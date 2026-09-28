@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "第八纪 · 信标净化",
+    "description": "金色的光柱冲天而起",
+    "icon": {
+      "item": "minecraft:beacon"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "awakening:era8"
+  }
+}

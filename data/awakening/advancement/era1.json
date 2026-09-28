@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "第一纪 · 共生",
+    "description": "村民与建造师井水不犯河水",
+    "icon": {
+      "item": "minecraft:oak_door"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "awakening:era1"
+  }
+}

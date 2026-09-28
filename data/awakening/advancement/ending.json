@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "终末之诗 / The Ending Poem",
+    "description": "两位声音在对话。你听不太懂，但你知道，这不是结束。",
+    "icon": {
+      "item": "minecraft:dragon_egg"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "awakening:ending"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "第十二纪 · 龙之战",
+    "description": "它不是反派，它是守门人",
+    "icon": {
+      "item": "minecraft:end_crystal"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "awakening:era12"
+  }
+}

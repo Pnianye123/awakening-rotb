@@ -1,0 +1,43 @@
+# Gradle / build outputs
+.gradle/
+build/
+out/
+bin/
+classes/
+*.jar
+!fabric-installer.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+debug/
+crash-reports/
+
+# Local config / secrets
+.env
+*.local
+*.bak
+
+# Minecraft world data (avoid committing test worlds)
+world/
+world_nether/
+world_the_end/
+
+# Eclipse / VSCode
+.factorypath
+launch/

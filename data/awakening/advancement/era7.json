@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "第七纪 · 坚守者",
+    "description": "Warden 不是怪物——它是安保系统",
+    "icon": {
+      "item": "minecraft:sculk_sensor"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "awakening:era7"
+  }
+}

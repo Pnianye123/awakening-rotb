@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "第六纪 · 凋零病毒",
+    "description": "死掉的人会站起来",
+    "icon": {
+      "item": "minecraft:wither_rose"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "awakening:era6"
+  }
+}

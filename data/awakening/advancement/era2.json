@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "第二纪 · 下界远征",
+    "description": "回来的不到三分之一",
+    "icon": {
+      "item": "minecraft:nether_brick"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "awakening:era2"
+  }
+}

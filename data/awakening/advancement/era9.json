@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "第九纪 · 灾厄的反噬",
+    "description": "他们曾经是想救人的好人",
+    "icon": {
+      "item": "minecraft:nether_star"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "awakening:era9"
+  }
+}

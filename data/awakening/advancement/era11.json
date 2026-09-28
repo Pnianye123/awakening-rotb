@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "第十一纪 · 末地远征",
+    "description": "通往另一个维度的入口",
+    "icon": {
+      "item": "minecraft:ender_pearl"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "awakening:era11"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "第四纪 · 请求复活",
+    "description": "复活术没成功",
+    "icon": {
+      "item": "minecraft:totem_of_undying"
+    },
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "awakening:era4"
+  }
+}
