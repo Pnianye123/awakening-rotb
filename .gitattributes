@@ -1,0 +1,18 @@
+# Auto-detect text files
+* text=auto
+
+# Gradle wrapper jar is binary
+gradle/wrapper/gradle-wrapper.jar binary
+
+# Text files
+*.java text
+*.json text
+*.gradle text
+*.properties text
+*.md text
+*.mcfunction text
+*.yml text
+
+# Images (already binary, but explicit)
+*.png binary
+*.jpg binary

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "awakening",
+  "version": "${version}",
+  "name": "Awakening: Return of the Builder",
+  "description": "A story-driven Minecraft mod: you are the ancient Builder, reliving 14 eras of history.",
+  "authors": [
+    "Jimmy"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Pnianye123/awakening-rotb",
+    "sources": "https://github.com/Pnianye123/awakening-rotb"
+  },
+  "license": "MIT",
+  "icon": "assets/awakening/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.awakeningrotb.AwakeningRotb"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": ["library"]
+    }
+  }
+}
