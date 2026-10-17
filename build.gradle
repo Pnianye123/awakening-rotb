@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.8-SNAPSHOT'
+    id 'fabric-loom' version '1.8.13'
     id 'maven-publish'
     id 'java'
 }
@@ -45,8 +45,5 @@ java {
     targetCompatibility = JavaVersion.VERSION_21
 }
 
-jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archivesName}" }
-    }
-}
+// jar task 不需要自定义——gradle 默认会用 archivesBaseName 生成 jar，
+// LICENSE 文件会保留在 jar 根目录

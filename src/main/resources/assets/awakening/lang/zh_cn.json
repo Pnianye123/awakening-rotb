@@ -1,4 +1,8 @@
 {
   "modmenu.nameTranslation.awakening": "方块之下",
-  "modmenu.descriptionTranslation.awakening": "一个剧情驱动的 Minecraft mod：你扮演远古建造师，重演十四纪历史。"
+  "modmenu.descriptionTranslation.awakening": "一个剧情驱动的 Minecraft mod：你扮演远古建造师，重演十四纪历史。",
+  "item.awakening.builder_robe": "建造师长袍",
+  "item.awakening.recorder": "记录仪",
+  "item.awakening.resonance_stone": "共鸣石",
+  "itemGroup.awakening": "方块之下"
 }
