@@ -1,0 +1,94 @@
+{
+  "ancient_city_ambient": {
+    "category": "ambient",
+    "subtitle": "subtitles.awakening.ancient_city_ambient",
+    "sounds": [
+      {
+        "name": "awakening:ancient_city_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "resonance": {
+    "category": "block",
+    "subtitle": "subtitles.awakening.resonance",
+    "sounds": [
+      {
+        "name": "awakening:resonance",
+        "stream": false
+      }
+    ]
+  },
+  "era_advance": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "awakening:era_advance",
+        "stream": false
+      }
+    ]
+  },
+  "wither_born": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "awakening:wither_born",
+        "stream": false
+      }
+    ]
+  },
+  "sentinel_awaken": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "awakening:sentinel_awaken",
+        "stream": false
+      }
+    ]
+  },
+  "final_poem": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "awakening:final_poem",
+        "stream": false
+      }
+    ]
+  },
+  "freeplay_unlock": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "awakening:freeplay_unlock",
+        "stream": false
+      }
+    ]
+  },
+  "record_a": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "awakening:music/record_a",
+        "stream": false
+      }
+    ]
+  },
+  "record_b": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "awakening:music/record_b",
+        "stream": false
+      }
+    ]
+  },
+  "record_c": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "awakening:music/record_c",
+        "stream": false
+      }
+    ]
+  }
+}

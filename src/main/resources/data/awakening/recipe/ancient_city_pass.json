@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PPP",
+    "PGP",
+    "PPP"
+  ],
+  "key": {
+    "P": "minecraft:paper",
+    "G": "minecraft:emerald"
+  },
+  "result": {
+    "id": "awakening:ancient_city_pass",
+    "count": 1
+  }
+}

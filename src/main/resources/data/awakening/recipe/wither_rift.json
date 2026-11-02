@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "OSO",
+    "SXS",
+    "OSO"
+  ],
+  "key": {
+    "O": "minecraft:obsidian",
+    "S": "minecraft:soul_sand",
+    "X": "awakening:wither_core"
+  },
+  "result": {
+    "id": "awakening:wither_rift",
+    "count": 1
+  }
+}

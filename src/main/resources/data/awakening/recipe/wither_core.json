@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " O ",
+    "OWO",
+    " O "
+  ],
+  "key": {
+    "O": "minecraft:obsidian",
+    "W": "minecraft:wither_skeleton_skull"
+  },
+  "result": {
+    "id": "awakening:wither_core",
+    "count": 1
+  }
+}

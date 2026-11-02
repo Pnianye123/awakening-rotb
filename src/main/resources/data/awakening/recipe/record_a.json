@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " P ",
+    "PGP",
+    " P "
+  ],
+  "key": {
+    "P": "minecraft:paper",
+    "G": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "awakening:record_a",
+    "count": 1
+  }
+}

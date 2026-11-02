@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.8.13'
+    id 'fabric-loom' version '1.9.2'
     id 'maven-publish'
     id 'java'
 }
@@ -8,7 +8,7 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-    archivesName = project.archives_base_name
+    archivesName = project.archivesBaseName
 }
 
 repositories {
@@ -47,3 +47,4 @@ java {
 
 // jar task 不需要自定义——gradle 默认会用 archivesBaseName 生成 jar，
 // LICENSE 文件会保留在 jar 根目录
+

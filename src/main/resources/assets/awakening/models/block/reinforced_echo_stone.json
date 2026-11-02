@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "awakening:block/reinforced_echo_stone"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " E ",
+    " I ",
+    " I "
+  ],
+  "key": {
+    "E": "minecraft:echo_shard",
+    "I": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "awakening:ancient_city_key",
+    "count": 1
+  }
+}

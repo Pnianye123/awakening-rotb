@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    "SBS",
+    " S "
+  ],
+  "key": {
+    "S": "minecraft:soul_sand",
+    "B": "minecraft:bone"
+  },
+  "result": {
+    "id": "awakening:soul_shard",
+    "count": 4
+  }
+}

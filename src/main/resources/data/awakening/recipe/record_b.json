@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " P ",
+    "PHP",
+    " P "
+  ],
+  "key": {
+    "P": "minecraft:paper",
+    "H": "minecraft:ice"
+  },
+  "result": {
+    "id": "awakening:record_b",
+    "count": 1
+  }
+}

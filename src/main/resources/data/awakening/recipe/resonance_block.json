@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "SSS",
+    "SCS",
+    "SSS"
+  ],
+  "key": {
+    "S": "minecraft:deepslate_bricks",
+    "C": "awakening:resonance_stone"
+  },
+  "result": {
+    "id": "awakening:resonance_block",
+    "count": 1
+  }
+}

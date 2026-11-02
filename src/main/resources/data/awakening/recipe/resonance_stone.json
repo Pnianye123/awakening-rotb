@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " E ",
+    "ESE",
+    " E "
+  ],
+  "key": {
+    "E": "minecraft:echo_shard",
+    "S": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "id": "awakening:resonance_stone",
+    "count": 1
+  }
+}

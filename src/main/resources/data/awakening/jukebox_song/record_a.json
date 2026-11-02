@@ -1,0 +1,8 @@
+{
+  "comparator_output": 7,
+  "description": {
+    "translate": "jukebox_song.awakening.record_a"
+  },
+  "length_in_seconds": 72.0,
+  "sound_event": "awakening:music/record_a"
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "key": {
+    "S": "minecraft:polished_deepslate",
+    "C": "awakening:resonance_stone"
+  },
+  "result": {
+    "id": "awakening:awakened_totem",
+    "count": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    " A ",
+    "AXA",
+    " A "
+  ],
+  "key": {
+    "A": "minecraft:iron_nugget",
+    "X": "awakening:soul_shard"
+  },
+  "result": {
+    "id": "awakening:soul_lantern",
+    "count": 1
+  }
+}

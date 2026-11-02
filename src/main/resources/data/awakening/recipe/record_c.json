@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " P ",
+    "PHP",
+    " P "
+  ],
+  "key": {
+    "P": "minecraft:paper",
+    "H": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "id": "awakening:record_c",
+    "count": 1
+  }
+}

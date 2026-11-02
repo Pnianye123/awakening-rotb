@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "RCR",
+    "CEC",
+    "RCR"
+  ],
+  "key": {
+    "R": "awakening:resonance_stone",
+    "C": "minecraft:deepslate",
+    "E": "awakening:echo_shard"
+  },
+  "result": {
+    "id": "awakening:reinforced_echo_stone",
+    "count": 1
+  }
+}

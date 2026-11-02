@@ -41,3 +41,6 @@ world_the_end/
 # Eclipse / VSCode
 .factorypath
 launch/
+
+# Loom test server
+run/
