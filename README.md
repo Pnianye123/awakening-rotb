@@ -1,14 +1,21 @@
 # 《方块之下》/ Awakening: Return of the Builder
 
 > 你不是这个世界的人。但你已经在这片土地上行走了很久。
+>
+> You are not from this world. But you have walked its roads for a very long time.
 
 一个 Minecraft 剧情冒险 mod —— 玩家扮演沉睡了数千年的远古建造师，**亲手重演 14 段历史**。
 
-- **MC 版本**：1.21.4
+A story-driven Minecraft mod: you play an ancient Builder who slept for millennia, **re-enacting fourteen eras of history by hand**.
+
+- **MC 版本**：1.21.4 / Minecraft 1.21.4
 - **Mod Loader**：Fabric
 - **依赖**：Fabric API 0.110.0+
 - **License**：MIT
 - **作者**：Jimmy
+- **语言**：中文 / English（自动跟随客户端语言，可 `/awakening lang` 手动切换）
+
+![banner](assets/media/banner.png)
 
 ---
 
@@ -38,12 +45,30 @@
 
 ---
 
+## 怎么开始
+
+进游戏后，你会**先拿到一本书**《前情提要》（Prologue）—— 它讲清楚了你是谁、发生过什么。
+
+**读完那本书，然后输入：**
+
+```
+/start
+```
+
+剧情从这一刻才开始。在你输入 `/start` 之前，世界不会自动推进，也不会生成任何剧情 NPC —— 你可以先四处走走、看看书。
+
+想再要一本：`/awakening book`
+
+---
+
 ## 命令
 
 | 命令 | 作用 |
 |---|---|
-| `/awakening start` | 开始剧情（发放长袍 + 记录仪 + 共鸣石） |
+| **`/start`** | **正式开始剧情（玩家唯一需要记的命令）** |
 | `/awakening status` | 查看当前纪元与任务 |
+| `/awakening book` | 再要一本《前情提要》 |
+| `/awakening lang zh\|en\|auto` | 切换语言（auto = 跟随客户端） |
 | `/awakening skip <1-14>` | 跳到指定纪元（调试用） |
 | `/awakening freeplay` | 直接进入自由段并领取奖励 |
 | `/awakening debug` | 查看剧情 NPC / Boss 状态与背包 |
@@ -53,24 +78,24 @@
 
 ## 14 段纪元
 
-| # | 纪元 | 任务 |
+| # | 纪元 / Era | 任务 / Objective |
 |---|---|---|
-| 一 | 共生 | 与 3 位村民交谈 |
-| 二 | 下界远征 | 采集 8 个黑曜石 |
-| 三 | 灾厄的善意 | 与灾厄村民交谈（他们不会伤害你） |
-| 四 | 请求复活 | 把 3 个灵魂碎片交给灾厄村民 |
-| 五 | 凋零之罪 | 在凋零之子的降临中活下来 |
-| 六 | 凋零病毒 | 躲进地下撑过 60 秒 |
-| 七 | 坚守者 | 用灵魂与尖啸体召唤坚守者，击败凋零之子 |
-| 八 | 信标净化 | 放置共鸣方块，用下界之星净化世界 |
-| 九 | 灾厄的反噬 | 击败 3 个失控的邪术师 |
-| 十 | 再次躲避 | 躲进 Y=-40 以下的要塞深处 |
-| 十一 | 末地远征 | 穿过末地传送门 |
-| 十二 | 龙之战 | 击败末影龙，留下一条守门龙 |
-| 十三 | 末地文明 | 收集 16 个末地石与一副鞘翅 |
-| 十四 | 不归路 | 使用末影珍珠碎片 |
+| I | 共生 · Symbiosis | 与 3 位村民交谈 |
+| II | 下界远征 · The Nether Expedition | 采集 8 个黑曜石 |
+| III | 灾厄的善意 · The Scourge's Benevolence | 与灾厄村民交谈（他们不会伤害你） |
+| IV | 请求复活 · A Plea for Resurrection | 把 3 个灵魂碎片交给灾厄村民 |
+| V | 凋零之罪 · The Sin of the Wither | 在凋零之子的降临中活下来 |
+| VI | 凋零病毒 · The Wither Blight | 躲进地下撑过 60 秒 |
+| VII | 坚守者 · The Echo Sentinel | 用灵魂与尖啸体召唤坚守者，击败凋零之子 |
+| VIII | 信标净化 · The Beacon's Cleansing | 放置共鸣方块，用下界之星净化世界 |
+| IX | 灾厄的反噬 · The Scourge's Retaliation | 击败 3 个失控的邪术师 |
+| X | 再次躲避 · Hiding Again | 躲进 Y=-40 以下的要塞深处 |
+| XI | 末地远征 · The Expedition to the End | 穿过末地传送门 |
+| XII | 龙之战 · The War of Dragons | 击败末影龙，留下一条守门龙 |
+| XIII | 末地文明 · The Civilization of the End | 收集 16 个末地石与一副鞘翅 |
+| XIV | 不归路 · The Road of No Return | 使用末影珍珠碎片 |
 
-**终末之诗** —— 唯一结局，播放完毕后进入自由段。
+**终末之诗 / The Final Poem** —— 唯一结局，播放完毕后进入自由段。
 
 ---
 
@@ -78,14 +103,16 @@
 
 | 角色 | 实现 | 说明 |
 |---|---|---|
-| 觉醒者 | 村民 | 第一纪的引路人 |
-| 邪术师 | 唤魔者 | 第三纪友善 → 第九纪暴走 |
-| 末影守护者 | 末影人 | 认亲不攻击 |
+| 觉醒者 The Awakener | 村民 | 第一纪的引路人 |
+| 邪术师 The Warlocks | 唤魔者 | 第三纪友善 → 第九纪暴走 |
+| 末影守护者 The Ender Guardian | 末影人 | 认亲不攻击 |
 | 坚守者 The Echo Sentinel | 监守者 | lore：「它看不见，靠震动感知」 |
-| 凋零之子 | 凋零 | lore：「三头、六翼、骨骼蓝皮」 |
-| 守门龙 | 末影龙 | 第十二纪留下的那一条 |
+| 凋零之子 The Wither Son | 凋零 | lore：「三头、六翼、骨骼蓝皮」 |
+| 守门龙 The Gate Dragon | 末影龙 | 第十二纪留下的那一条 |
 
 > NPC 与 Boss 全部基于原版实体实现 —— 零客户端崩溃风险，且这些角色本来就长得像村民/末影人/监守者/凋零。
+
+![beacon](assets/media/screenshot-beacon.png)
 
 ---
 
@@ -113,8 +140,8 @@
 
 ```bash
 ./gradlew build          # 构建 jar → build/libs/
-./gradlew runServer     # 本地测试服务端
-node tools/e2e-test.js  # 端到端回归测试（需先启动服务端 + mineflayer）
+./gradlew runServer      # 本地测试服务端
+node tools/e2e-test.js   # 端到端回归测试（需先启动服务端 + mineflayer）
 ```
 
 ### 项目结构
@@ -122,17 +149,21 @@ node tools/e2e-test.js  # 端到端回归测试（需先启动服务端 + minefl
 ```
 src/main/java/net/awakeningrotb/
 ├── AwakeningRotb.java          主入口
-├── command/AwakeningCommand.java   /awakening 命令
+├── command/AwakeningCommand.java   /start 与 /awakening 命令
 ├── item/                       物品注册 + 交互行为
 ├── block/                      方块注册
 ├── sound/                      音效注册
 ├── story/                      ★ 剧情核心
-│   ├── StoryText.java          自动生成的 lore 文本（勿手改）
+│   ├── StoryText.java          自动生成的中文 lore（勿手改）
+│   ├── StoryTextEn.java        自动生成的英文 lore（勿手改）
+│   ├── L10n.java               自动生成的界面文本中英双份（勿手改）
+│   ├── Loc.java                语言运行时（按玩家语言取文本）
+│   ├── PrologueBook.java       《前情提要》书（中英双份）
 │   ├── Era.java                14 段纪元定义
 │   ├── StoryManager.java       调度器（cutscene + 任务轮询）
 │   ├── StoryProgress.java      单玩家进度
 │   ├── StoryState.java         世界级存档
-│   ├── StoryEvents.java        事件 → 任务进度
+│   ├── StoryEvents.java        事件 → 任务进度 + 开局发书
 │   ├── StoryNpc.java           NPC 生成
 │   └── StoryBoss.java          Boss 生成
 └── world/
@@ -142,12 +173,16 @@ src/main/java/net/awakeningrotb/
 
 ### lore 文本维护
 
-剧情原文在 `data/awakening/function/eraN.mcfunction`（Jimmy 写的原始版本）。
-`src/main/java/net/awakeningrotb/story/StoryText.java` 由脚本生成，**不要手改**：
+剧情原文在 `data/awakening/function/eraN.mcfunction`（Jimmy 写的原始版本）+ `STORY.md` 尾声。
+英文译文在 `data/awakening/lang/en/*.json`（**行数必须与中文一一对应**）。
+
+三个 Java 文件由脚本生成，**不要手改**：
 
 ```bash
-python3 tools/gen-story-text.py
+python3 tools/gen-i18n.py
 ```
+
+会重新生成 `StoryText.java`（中文）、`StoryTextEn.java`（英文）、`L10n.java`（界面文本中英双份）。
 
 ---
 

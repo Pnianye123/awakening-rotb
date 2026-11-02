@@ -95,7 +95,7 @@ public final class StoryBoss {
             target.setTarget(warden);
         }
         player.playSound(net.minecraft.sound.SoundEvents.ENTITY_WARDEN_EMERGE, 1.0f, 1.0f);
-        player.sendMessage(Text.literal("§b地下的深处传来沉重的心跳 —— 坚守者苏醒了。")
+        player.sendMessage(Loc.msg(player, "msg.sentinel.wake")
                 .formatted(Formatting.AQUA), false);
     }
 

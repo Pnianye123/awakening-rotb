@@ -1,16 +1,17 @@
 package net.awakeningrotb.story;
 
 /**
- * 《方块之下》剧情文本 —— 自动生成，请勿手改。
+ * 《方块之下》剧情文本（中文）—— 自动生成，请勿手改。
  *
- * 由 tools/gen-story-text.py 从 data/awakening/function/eraN.mcfunction 提取，
- * 保留 Jimmy 原文（lore 铁律，改动请改 mcfunction 后重新生成）。
+ * <p>由 tools/gen-i18n.py 从 data/awakening/function/eraN.mcfunction 与 STORY.md 尾声提取，
+ * 保留 Jimmy 原文（lore 铁律：改 lore 请改 mcfunction 后重新生成）。
+ * 英文版见 StoryTextEn.java。
  */
 public final class StoryText {
     private StoryText() {
     }
 
-    /** 第一纪 · 共生 */
+    /** 第第一纪 · 共生 */
     public static final String[] ERA1 = {
             "第一纪 · 共生",
             "很久以前——也许是几千年，也许更久——",
@@ -27,7 +28,7 @@ public final class StoryText {
             "两边都觉得这样挺好。",
     };
 
-    /** 第一纪 · 共生 —— 每行对应的颜色（与 ERA1 一一对应） */
+    /** 第第一纪 · 共生 —— 每行颜色 */
     public static final String[] ERA1_COLOR = {
             "gold",
             "white",
@@ -44,7 +45,7 @@ public final class StoryText {
             "white",
     };
 
-    /** 第二纪 · 下界远征 */
+    /** 第第二纪 · 下界远征 */
     public static final String[] ERA2 = {
             "第二纪 · 下界远征",
             "好景不长。",
@@ -63,7 +64,7 @@ public final class StoryText {
             "他们想弄清楚下界到底是什么，为什么这么危险。",
     };
 
-    /** 第二纪 · 下界远征 —— 每行对应的颜色（与 ERA2 一一对应） */
+    /** 第第二纪 · 下界远征 —— 每行颜色 */
     public static final String[] ERA2_COLOR = {
             "gold",
             "white",
@@ -82,7 +83,7 @@ public final class StoryText {
             "gray",
     };
 
-    /** 第三纪 · 灾厄的善意 */
+    /** 第第三纪 · 灾厄的善意 */
     public static final String[] ERA3 = {
             "第三纪 · 灾厄的善意",
             "伤亡太大，光靠「不再去下界」是躲不掉的。",
@@ -102,7 +103,7 @@ public final class StoryText {
             "他们以为自己是英雄。",
     };
 
-    /** 第三纪 · 灾厄的善意 —— 每行对应的颜色（与 ERA3 一一对应） */
+    /** 第第三纪 · 灾厄的善意 —— 每行颜色 */
     public static final String[] ERA3_COLOR = {
             "gold",
             "white",
@@ -122,7 +123,7 @@ public final class StoryText {
             "white",
     };
 
-    /** 第四纪 · 请求复活 */
+    /** 第第四纪 · 请求复活 */
     public static final String[] ERA4 = {
             "第四纪 · 请求复活",
             "建造师看到太多同伴死在下界。",
@@ -139,7 +140,7 @@ public final class StoryText {
             "灵魂没回来。",
     };
 
-    /** 第四纪 · 请求复活 —— 每行对应的颜色（与 ERA4 一一对应） */
+    /** 第第四纪 · 请求复活 —— 每行颜色 */
     public static final String[] ERA4_COLOR = {
             "gold",
             "white",
@@ -156,7 +157,7 @@ public final class StoryText {
             "red",
     };
 
-    /** 第五纪 · 凋零之罪 */
+    /** 第第五纪 · 凋零之罪 */
     public static final String[] ERA5 = {
             "第五纪 · 凋零之罪",
             "有人私下等不及了。",
@@ -174,7 +175,7 @@ public final class StoryText {
             "然后开始杀周围所有人。",
     };
 
-    /** 第五纪 · 凋零之罪 —— 每行对应的颜色（与 ERA5 一一对应） */
+    /** 第第五纪 · 凋零之罪 —— 每行颜色 */
     public static final String[] ERA5_COLOR = {
             "gold",
             "white",
@@ -192,7 +193,7 @@ public final class StoryText {
             "red",
     };
 
-    /** 第六纪 · 凋零病毒 */
+    /** 第第六纪 · 凋零病毒 */
     public static final String[] ERA6 = {
             "第六纪 · 凋零病毒",
             "凋零不只是会攻击——它辐射病毒。",
@@ -208,7 +209,7 @@ public final class StoryText {
             "外面是一片凋零的蓝雾。",
     };
 
-    /** 第六纪 · 凋零病毒 —— 每行对应的颜色（与 ERA6 一一对应） */
+    /** 第第六纪 · 凋零病毒 —— 每行颜色 */
     public static final String[] ERA6_COLOR = {
             "gold",
             "white",
@@ -224,7 +225,7 @@ public final class StoryText {
             "dark_blue",
     };
 
-    /** 第七纪 · 坚守者 */
+    /** 第第七纪 · 坚守者 */
     public static final String[] ERA7 = {
             "第七纪 · 坚守者 / The Echo Sentinel",
             "建造师从地下室里做出了一个决定。",
@@ -247,7 +248,7 @@ public final class StoryText {
             "用本能警惕着任何可能再次唤醒凋零的动静。",
     };
 
-    /** 第七纪 · 坚守者 —— 每行对应的颜色（与 ERA7 一一对应） */
+    /** 第第七纪 · 坚守者 —— 每行颜色 */
     public static final String[] ERA7_COLOR = {
             "gold",
             "white",
@@ -270,7 +271,7 @@ public final class StoryText {
             "gray",
     };
 
-    /** 第八纪 · 信标净化 */
+    /** 第第八纪 · 信标净化 */
     public static final String[] ERA8 = {
             "第八纪 · 信标净化",
             "凋零虽然被打败了，但凋零病毒还在主世界蔓延。",
@@ -286,7 +287,7 @@ public final class StoryText {
             "建造师以为自己赢了。",
     };
 
-    /** 第八纪 · 信标净化 —— 每行对应的颜色（与 ERA8 一一对应） */
+    /** 第第八纪 · 信标净化 —— 每行颜色 */
     public static final String[] ERA8_COLOR = {
             "gold",
             "white",
@@ -302,7 +303,7 @@ public final class StoryText {
             "white",
     };
 
-    /** 第九纪 · 灾厄的反噬 */
+    /** 第第九纪 · 灾厄的反噬 */
     public static final String[] ERA9 = {
             "第九纪 · 灾厄的反噬",
             "与此同时，灾厄村民在做自己的事。",
@@ -332,7 +333,7 @@ public final class StoryText {
             "他们曾经是想救人的好人。",
     };
 
-    /** 第九纪 · 灾厄的反噬 —— 每行对应的颜色（与 ERA9 一一对应） */
+    /** 第第九纪 · 灾厄的反噬 —— 每行颜色 */
     public static final String[] ERA9_COLOR = {
             "gold",
             "white",
@@ -362,7 +363,7 @@ public final class StoryText {
             "yellow",
     };
 
-    /** 第十纪 · 再次躲避 */
+    /** 第第十纪 · 再次躲避 */
     public static final String[] ERA10 = {
             "第十纪 · 再次躲避",
             "信标净化之后，建造师以为能回家。",
@@ -379,7 +380,7 @@ public final class StoryText {
             "是为了让建造师在地下活下去。",
     };
 
-    /** 第十纪 · 再次躲避 —— 每行对应的颜色（与 ERA10 一一对应） */
+    /** 第第十纪 · 再次躲避 —— 每行颜色 */
     public static final String[] ERA10_COLOR = {
             "gold",
             "white",
@@ -396,7 +397,7 @@ public final class StoryText {
             "gray",
     };
 
-    /** 第十一纪 · 末地远征 */
+    /** 第第十一纪 · 末地远征 */
     public static final String[] ERA11 = {
             "第十一纪 · 末地远征",
             "要塞挖着挖着，他们挖到了奇怪的黑曜石框架。",
@@ -417,7 +418,7 @@ public final class StoryText {
             "第一批建造师走了进去。",
     };
 
-    /** 第十一纪 · 末地远征 —— 每行对应的颜色（与 ERA11 一一对应） */
+    /** 第第十一纪 · 末地远征 —— 每行颜色 */
     public static final String[] ERA11_COLOR = {
             "gold",
             "white",
@@ -438,7 +439,7 @@ public final class StoryText {
             "white",
     };
 
-    /** 第十二纪 · 龙之战 */
+    /** 第第十二纪 · 龙之战 */
     public static final String[] ERA12 = {
             "第十二纪 · 龙之战",
             "末地是一片虚空。",
@@ -461,7 +462,7 @@ public final class StoryText {
             "它不是反派，它是守门人。",
     };
 
-    /** 第十二纪 · 龙之战 —— 每行对应的颜色（与 ERA12 一一对应） */
+    /** 第第十二纪 · 龙之战 —— 每行颜色 */
     public static final String[] ERA12_COLOR = {
             "gold",
             "white",
@@ -484,7 +485,7 @@ public final class StoryText {
             "green",
     };
 
-    /** 第十三纪 · 末地文明 */
+    /** 第第十三纪 · 末地文明 */
     public static final String[] ERA13 = {
             "第十三纪 · 末地文明",
             "打败所有末影龙之后，建造师在末地安顿下来。",
@@ -498,7 +499,7 @@ public final class StoryText {
             "在没有重力的地方造出了完整的文明。",
     };
 
-    /** 第十三纪 · 末地文明 —— 每行对应的颜色（与 ERA13 一一对应） */
+    /** 第第十三纪 · 末地文明 —— 每行颜色 */
     public static final String[] ERA13_COLOR = {
             "gold",
             "white",
@@ -512,7 +513,7 @@ public final class StoryText {
             "yellow",
     };
 
-    /** 第十四纪 · 不归路 */
+    /** 第第十四纪 · 不归路 */
     public static final String[] ERA14 = {
             "第十四纪 · 不归路",
             "可惜，末地不是家。",
@@ -535,7 +536,7 @@ public final class StoryText {
             "这个世界已经荒废了几千年。",
     };
 
-    /** 第十四纪 · 不归路 —— 每行对应的颜色（与 ERA14 一一对应） */
+    /** 第第十四纪 · 不归路 —— 每行颜色 */
     public static final String[] ERA14_COLOR = {
             "gold",
             "white",
@@ -571,7 +572,7 @@ public final class StoryText {
             "答案就是你。",
     };
 
-    /** 终末之诗每行颜色（与 ENDING 一一对应） */
+    /** 终末之诗每行颜色 */
     public static final String[] ENDING_COLOR = {
             "white",
             "white",

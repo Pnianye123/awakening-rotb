@@ -95,7 +95,10 @@ A story-driven Minecraft mod for **Fabric**. You wake as the ancient Builder —
 - **7 custom blocks** (Resonance Block, Soul Lantern, Builder's Brick, Reinforced Echo Stone, Wither Rift, Awakened Totem, Builder's Robe block)
 - **3 original music discs** (72s / 66s / 115s) — composed for this mod
 - **Ancient City world generation** — a custom structure feature
-- **A `/awakening` command** for starting, inspecting, skipping eras, and free-play rewards
+- **A `/start` command** — the story does not begin until you ask it to
+- **A prologue book** — every new player is handed a written book that explains who they are and what happened, and tells them to type `/start`
+- **Full English / Chinese localization** — the whole story, all objectives and every interface line follow your client language
+- **A `/awakening` command** for inspecting, skipping eras, switching language and free-play rewards
 
 ---
 
@@ -105,13 +108,15 @@ A complete playthrough of the 14-era story arc.
 
 - ✅ All 14 eras + the End Poem, played as one continuous flow
 - ✅ One hand-completed objective per era
+- ✅ **The story waits for you** — nothing auto-starts; you get a prologue book and type `/start` when you are ready
+- ✅ **Full English + Chinese localization** — 218 lines of story, all objectives and every UI message
 - ✅ Echo Sentinel summoning ritual (era 7)
 - ✅ Beacon Purification ritual (era 8)
 - ✅ Wither Son boss fight, Calamity Cultist encounters
 - ✅ 13 items / 7 blocks / 3 original music discs / 20 recipes
 - ✅ Ancient City structure generation
 - ✅ Free-play segment with 10 rewards
-- ✅ `/awakening` command: `start` · `status` · `skip` · `freeplay` · `debug` · `reset`
+- ✅ Commands: `/start` plus `/awakening status` · `book` · `lang` · `skip` · `freeplay` · `debug` · `reset`
 
 ### Requirements
 
@@ -125,15 +130,20 @@ A complete playthrough of the 14-era story arc.
 1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for 1.21.4
 2. Download [Fabric API](https://modrinth.com/mod/fabric-api) 0.110.0+ for 1.21.4
 3. Put both `fabric-api` and `awakening-rotb-1.0.0.jar` into your `mods/` folder
-4. Launch the game, create a world, run `/awakening start`
+4. Launch the game, create a world, and enter the world
+5. You will be handed a **prologue book** — read it, then type **`/start`** in chat
+
+Nothing happens until you type `/start`. The book explains who you are and what happened before the story began.
 
 > This mod must be installed on **both** the client and the server.
 
 ### Commands
 
 ```
-/awakening start      # begin the story from the Awakening
+/start                # begin the story (the only command a player needs)
 /awakening status     # current era, boss counts, resonance blocks, inventory
+/awakening book       # get another copy of the prologue book
+/awakening lang zh|en # switch language manually (auto = follow client)
 /awakening skip <n>   # jump to era n (debugging / skipping ahead)
 /awakening freeplay   # unlock the free-play segment and its rewards
 /awakening debug      # detailed diagnostic readout
@@ -200,6 +210,16 @@ Issues: https://github.com/Pnianye123/awakening-rotb/issues
 ```
 The complete 14-era story arc.
 
+New in this version:
+- The story no longer starts on its own. Every new player is handed a written
+  "Prologue" book that tells them who they are and what happened before the
+  story begins - and tells them to type /start. Nothing advances until they do.
+- Full English + Chinese localization: all 218 lines of story text, every
+  objective and every interface message now follow the player's client
+  language. Use /awakening lang zh|en to override it.
+- /awakening book hands out another copy of the prologue book.
+- /awakening reset now also clears the story items from your inventory.
+
 Story:
 - All 14 eras plus the End Poem, played as one continuous flow
 - One hand-completed objective per era (talk, mine, craft, fight, purify)
@@ -236,7 +256,10 @@ Install on both client and server.
   > - `assets/awakening/icon.png`（jar 内）= Fabric mod 列表里显示的，512×512，另一套设计
   > 上传 Modrinth 用**根目录那个**。
 
-- **Banner**：项目页顶部横幅，可选。想传可以从 game 里截一张远古古城/black-gold 主题的图。**不传也能发布**。
+- **Banner**：**已经做好了** —— `assets/media/banner.png`，**1280×720 PNG**（Modrinth 推荐尺寸）。
+  黑金主题的兜帽建造师 + 远古古城，和 icon 同一套视觉。
+- **截图**：`assets/media/screenshot-beacon.png`（1280×720，第八纪信标净化场景）。
+  Modrinth 至少要 1 张截图，banner 可选 —— 建议两个都传。
 - 颜色建议：黑底 + 金色（呼应建造师主题）。
 
 ---
@@ -258,6 +281,8 @@ Install on both client and server.
 - [ ] Dependencies: Fabric API `>=0.110.0`（Required，Client+Server）
 - [ ] changelog 已经粘进去
 - [ ] icon.png 已经传（512×512，仓库根目录那个）
+- [ ] banner.png 已经传（1280×720，`assets/media/banner.png`）
+- [ ] screenshot-beacon.png 已经传（1280×720，`assets/media/screenshot-beacon.png`）
 
 完成后 Modrinth 会给你一个项目链接，类似 `https://modrinth.com/mod/awakening-rotb`。
 把那个链接发给 Jimmy 我们再继续下一步（README 加 Modrinth badge / Modpack 那一侧）。
@@ -282,4 +307,6 @@ Install on both client and server.
 
 ---
 
-_Updated by Efe · 2026-11-02（原文 Steve · 2026-09-29）_
+_Updated by Steve · 2026-11-02 09:30（新增 /start 门槛、前情提要书、中英双语、banner/截图素材）_
+
+_此前：Efe · 2026-11-02（原文 Steve · 2026-09-29）_

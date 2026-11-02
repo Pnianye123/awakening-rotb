@@ -45,6 +45,9 @@ public class StoryProgress {
     /** 该玩家身上「已完成的 NPC 击杀数」等按实体类型分的统计。 */
     public final Map<String, Integer> counters = new HashMap<>();
 
+    /** 语言覆盖："zh" / "en"；空字符串 = 跟随客户端语言自动判定。 */
+    public String lang = "";
+
     public void reset() {
         era = 0;
         cutsceneLine = 0;
@@ -82,6 +85,7 @@ public class StoryProgress {
         nbt.putBoolean("started", started);
         nbt.putInt("counter", counter);
         nbt.putInt("flags", flags);
+        nbt.putString("lang", lang);
         NbtList list = new NbtList();
         counters.forEach((k, v) -> {
             NbtCompound e = new NbtCompound();
@@ -103,6 +107,7 @@ public class StoryProgress {
         p.started = nbt.getBoolean("started");
         p.counter = nbt.getInt("counter");
         p.flags = nbt.getInt("flags");
+        p.lang = nbt.getString("lang");
         NbtElement listEl = nbt.get("counters");
         if (listEl instanceof NbtList list) {
             for (int i = 0; i < list.size(); i++) {
@@ -114,28 +119,7 @@ public class StoryProgress {
         return p;
     }
 
-    /** 便捷：把当前纪元的剧情文本取出来。 */
-    public static String[] linesFor(int era) {
-        return switch (era) {
-            case 0 -> StoryText.ERA1;
-            case 1 -> StoryText.ERA2;
-            case 2 -> StoryText.ERA3;
-            case 3 -> StoryText.ERA4;
-            case 4 -> StoryText.ERA5;
-            case 5 -> StoryText.ERA6;
-            case 6 -> StoryText.ERA7;
-            case 7 -> StoryText.ERA8;
-            case 8 -> StoryText.ERA9;
-            case 9 -> StoryText.ERA10;
-            case 10 -> StoryText.ERA11;
-            case 11 -> StoryText.ERA12;
-            case 12 -> StoryText.ERA13;
-            case 13 -> StoryText.ERA14;
-            default -> new String[0];
-        };
-    }
-
-    /** 便捷：当前纪元的每行颜色。 */
+    /** 便捷：当前纪元的每行颜色（颜色与语言无关，中文版为准）。 */
     public static String[] colorsFor(int era) {
         return switch (era) {
             case 0 -> StoryText.ERA1_COLOR;
@@ -154,17 +138,6 @@ public class StoryProgress {
             case 13 -> StoryText.ERA14_COLOR;
             default -> new String[0];
         };
-    }
-
-    /** 便捷：当前纪元的中文标题（如"第七纪 · 坚守者"）。 */
-    public static String titleFor(int era) {
-        String[] lines = linesFor(era);
-        return lines.length > 0 ? lines[0] : "";
-    }
-
-    /** 便捷：当前纪元的任务描述。 */
-    public static String objectiveTextFor(int era) {
-        return Era.OBJECTIVE_TEXTS[Math.min(era, Era.OBJECTIVE_TEXTS.length - 1)];
     }
 
     /** 便捷：玩家是否在末地。 */

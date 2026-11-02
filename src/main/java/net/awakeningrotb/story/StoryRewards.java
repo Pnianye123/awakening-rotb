@@ -34,10 +34,10 @@ public final class StoryRewards {
         StoryItems.give(player, ModItems.RECORD_B, 1);
         StoryItems.give(player, ModItems.RECORD_C, 1);
 
-        player.sendMessage(Text.literal("§6✦ 终末之诗已奏响 —— 你获得了自由段奖励").formatted(Formatting.GOLD), false);
-        player.sendMessage(Text.literal("§7建造师长袍 · 共鸣石 · 灵魂罗盘 · 古城通行证 · 凋零核心 · 觉醒者信物 · 古城钥匙 · 古老唱片 A/B/C")
+        player.sendMessage(Loc.msg(player, "msg.reward.title").formatted(Formatting.GOLD), false);
+        player.sendMessage(Loc.msg(player, "msg.reward.items")
                 .formatted(Formatting.GRAY), false);
-        player.sendMessage(Text.literal("§7这个世界从此是你的了 —— 拆古城、杀村民、退出游戏、玩创造模式，什么都行。")
+        player.sendMessage(Loc.msg(player, "msg.reward.free")
                 .formatted(Formatting.DARK_GRAY), false);
         player.playSound(net.minecraft.sound.SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1.0f, 1.0f);
     }
@@ -48,7 +48,10 @@ public final class StoryRewards {
                 ModItems.BUILDER_ROBE, ModItems.RESONANCE_STONE, ModItems.SOUL_COMPASS,
                 ModItems.ANCIENT_CITY_PASS, ModItems.WITHER_CORE, ModItems.AWAKENED_TOKEN,
                 ModItems.ANCIENT_CITY_KEY, ModItems.RECORD_A, ModItems.RECORD_B, ModItems.RECORD_C,
-                ModItems.RECORDER, ModItems.SOUL_SHARD, ModItems.ECHO_SHARD
+                ModItems.RECORDER, ModItems.SOUL_SHARD, ModItems.ECHO_SHARD,
+                ModItems.RESONANCE_BLOCK_ITEM,
+                // 剧情发放的下界之星（第八纪净化触发物）—— reset 时也收回去
+                net.minecraft.item.Items.NETHER_STAR
         };
         for (int i = 0; i < player.getInventory().size(); i++) {
             net.minecraft.item.ItemStack stack = player.getInventory().getStack(i);

@@ -1,5 +1,6 @@
 package net.awakeningrotb.item;
 
+import net.awakeningrotb.story.Loc;
 import net.awakeningrotb.story.StoryManager;
 import net.awakeningrotb.story.StoryProgress;
 import net.awakeningrotb.story.StoryState;
@@ -39,25 +40,25 @@ public class ModItemBehaviors {
         StoryProgress progress = StoryState.of(sw).get(sp);
 
         if (!progress.started) {
-            sp.sendMessage(Text.literal("§7记录仪一片死寂 —— 剧情还没开始。").formatted(Formatting.GRAY), false);
+            sp.sendMessage(Loc.msg(sp, "msg.recorder.idle").formatted(Formatting.GRAY), false);
             return ActionResult.PASS;
         }
         if (progress.freePlay) {
-            sp.sendMessage(Text.literal("§7记录仪的指针不再指向任何地方。").formatted(Formatting.GRAY), false);
+            sp.sendMessage(Loc.msg(sp, "msg.recorder.dead").formatted(Formatting.GRAY), false);
             return ActionResult.PASS;
         }
         if (!progress.cutsceneDone) {
-            sp.sendMessage(Text.literal("§7记录仪正在记录 —— 等这段历史讲完。").formatted(Formatting.GRAY), false);
+            sp.sendMessage(Loc.msg(sp, "msg.recorder.recording").formatted(Formatting.GRAY), false);
             return ActionResult.PASS;
         }
         if (progress.objectiveDone) {
-            sp.sendMessage(Text.literal("§7这一纪已经记下了 —— 任务还没完成呢。").formatted(Formatting.GRAY), false);
+            sp.sendMessage(Loc.msg(sp, "msg.recorder.done").formatted(Formatting.GRAY), false);
             return ActionResult.PASS;
         }
 
         // 强制完成当前任务 → 推进纪元
         progress.objectiveDone = true;
-        sp.sendMessage(Text.literal("§e记录仪翻到了下一页。").formatted(Formatting.YELLOW), false);
+        sp.sendMessage(Loc.msg(sp, "msg.recorder.next").formatted(Formatting.YELLOW), false);
         return ActionResult.SUCCESS;
     }
 
@@ -88,12 +89,12 @@ public class ModItemBehaviors {
         }
 
         if (sculk > 0) {
-            sp.sendMessage(Text.literal("§b共鸣石开始发热 —— 尖啸体就在附近。")
+            sp.sendMessage(Loc.msg(sp, "msg.stone.hot")
                     .formatted(Formatting.AQUA), false);
-            sp.sendMessage(Text.literal("§7你听懂了：那是死去的同伴在用震动说话。")
+            sp.sendMessage(Loc.msg(sp, "msg.stone.heard")
                     .formatted(Formatting.GRAY), false);
         } else {
-            sp.sendMessage(Text.literal("§8共鸣石冰凉 —— 附近没有尖啸体。").formatted(Formatting.DARK_GRAY), false);
+            sp.sendMessage(Loc.msg(sp, "msg.stone.cold").formatted(Formatting.DARK_GRAY), false);
         }
         return ActionResult.SUCCESS;
     }
@@ -106,13 +107,14 @@ public class ModItemBehaviors {
         ServerWorld sw = (ServerWorld) world;
         StoryProgress progress = StoryState.of(sw).get(sp);
 
+        String lang = Loc.langOf(sp);
         if (!progress.started || progress.freePlay) {
-            sp.sendMessage(Text.literal("§7罗盘的指针缓缓转了一圈，然后停住了。")
+            sp.sendMessage(Loc.msg(sp, "msg.compass.stopped")
                     .formatted(Formatting.GRAY), false);
             return ActionResult.SUCCESS;
         }
-        sp.sendMessage(Text.literal("§6灵魂罗盘指向：").formatted(Formatting.GOLD), false);
-        sp.sendMessage(Text.literal("§f" + StoryProgress.objectiveTextFor(progress.era))
+        sp.sendMessage(Loc.msg(sp, "msg.compass.points").formatted(Formatting.GOLD), false);
+        sp.sendMessage(Text.literal(Loc.objective(lang, progress.era))
                 .formatted(Formatting.WHITE), false);
         return ActionResult.SUCCESS;
     }
@@ -122,8 +124,8 @@ public class ModItemBehaviors {
         if (world.isClient() || !(player instanceof ServerPlayerEntity sp)) {
             return ActionResult.PASS;
         }
-        sp.sendMessage(Text.literal("§6它属于远古建造师。").formatted(Formatting.GOLD), false);
-        sp.sendMessage(Text.literal("§7考古学家在主世界地下能找到他们留下的城市 —— 规则化的方形大厅，柱子上嵌着共鸣石。")
+        sp.sendMessage(Loc.msg(sp, "msg.relic.owner").formatted(Formatting.GOLD), false);
+        sp.sendMessage(Loc.msg(sp, "msg.relic.city")
                 .formatted(Formatting.GRAY), false);
         return ActionResult.SUCCESS;
     }

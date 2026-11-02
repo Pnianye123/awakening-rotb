@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
@@ -49,6 +50,22 @@ public final class StoryEvents {
         // ── 每 tick 推进剧情 ──
         ServerTickEvents.END_SERVER_TICK.register(StoryManager::tick);
 
+        // ── 玩家进世界 → 发《前情提要》 ──
+        // 开局第一件事是拿到那本书；书里告诉玩家输入 /start 才开始剧情。
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            ServerPlayerEntity player = handler.getPlayer();
+            if (player == null) {
+                return;
+            }
+            // 已经玩过（进度里有 started）就不重复塞书了
+            StoryProgress progress = StoryState.of(player.getServerWorld()).get(player);
+            if (progress.started) {
+                return;
+            }
+            PrologueBook.give(player);
+            player.sendMessage(Loc.msg(player, "msg.prologue.given").formatted(Formatting.GRAY), false);
+        });
+
         // ── 与 NPC 交谈 ──
         UseEntityCallback.EVENT.register((PlayerEntity player, World world, Hand hand,
                                           Entity entity, EntityHitResult hitResult) -> {
@@ -66,15 +83,14 @@ public final class StoryEvents {
                     && !name.contains(StoryNpc.TAG_AWAKENER)) {
                 // 普通村民 —— 第一纪：与 3 位村民交谈
                 progress.increment("talk_villager");
-                hint(sp, "§7你和村民聊了聊。§7（§f"
-                        + Math.min(progress.get("talk_villager"), 3) + "§7/§f3§7）");
+                hint(sp, Loc.str(Loc.langOf(sp), "msg.talk.villager",
+                        Math.min(progress.get("talk_villager"), 3)));
             } else if (name.contains(StoryNpc.TAG_WARLOCK)) {
                 // 灾厄村民 —— 第三纪
                 progress.increment("talk_warlock");
-                hint(sp, "§7灾厄村民抬起头看你。§7它的眼神很凶，但它没有动手。");
+                hint(sp, Loc.str(Loc.langOf(sp), "msg.talk.warlock"));
                 if (progress.get("talk_warlock") >= 1 && progress.era == 2) {
-                    sp.sendMessage(Text.literal("§e灾厄村民：§7「我们可以帮你们复活他们……但首先，我们需要灵魂碎片。」")
-                            .formatted(Formatting.GRAY), false);
+                    sp.sendMessage(Loc.msg(sp, "msg.talk.warlock.ask").formatted(Formatting.GRAY), false);
                 }
             }
             return ActionResult.PASS;
@@ -100,11 +116,9 @@ public final class StoryEvents {
             }
             held.decrement(1);
             progress.increment("give_soul");
-            hint(sp, "§7你把一枚灵魂碎片放进灾厄村民的掌心。§7（§f"
-                    + progress.get("give_soul") + "§7/§f3§7）");
+            hint(sp, Loc.str(Loc.langOf(sp), "msg.give.soul", progress.get("give_soul")));
             if (progress.get("give_soul") >= 3) {
-                sp.sendMessage(Text.literal("§8灾厄村民们低下头，开始了复活术。")
-                        .formatted(Formatting.DARK_GRAY), false);
+                sp.sendMessage(Loc.msg(sp, "msg.give.soul.done").formatted(Formatting.DARK_GRAY), false);
             }
             return ActionResult.PASS;
         });
@@ -129,17 +143,17 @@ public final class StoryEvents {
                 }
                 if (isWitherSon) {
                     progress.increment("kill_wither_son");
-                    player.sendMessage(Text.literal("§5凋零之子被撕碎了。")
+                    player.sendMessage(Loc.msg(player, "msg.kill.wither")
                             .formatted(Formatting.DARK_PURPLE), false);
                     // 坚守者 —— 第七纪 Boss 战的胜利者
                     StoryBoss.spawnGateDragon(player);
                 } else if (isWarlock) {
                     progress.increment("kill_warlock");
-                    player.sendMessage(Text.literal("§5一个邪术师倒下了。")
+                    player.sendMessage(Loc.msg(player, "msg.kill.warlock")
                             .formatted(Formatting.DARK_PURPLE), false);
                 } else if (isDragon) {
                     progress.increment("kill_dragon");
-                    player.sendMessage(Text.literal("§6末影龙坠落。最后一条守门龙留了下来。")
+                    player.sendMessage(Loc.msg(player, "msg.kill.dragon")
                             .formatted(Formatting.GOLD), false);
                 }
             }
@@ -184,7 +198,7 @@ public final class StoryEvents {
             if (progress.era == 13 && player.getStackInHand(hand).isOf(ModItems.ECHO_SHARD)) {
                 player.getStackInHand(hand).decrement(1);
                 progress.setFlag(StoryManager.FLAG_NO_RETURN);
-                sp.sendMessage(Text.literal("§5你握紧末影珍珠碎片。§5世界在你眼前碎成了像素。")
+                sp.sendMessage(Loc.msg(sp, "msg.use.echo")
                         .formatted(Formatting.DARK_PURPLE), false);
                 return ActionResult.SUCCESS;
             }
@@ -241,9 +255,9 @@ public final class StoryEvents {
             e.discard();
         }
 
-        sp.sendMessage(Text.literal("§6信标的光柱冲天而起 —— 金色的、纯净的。")
+        sp.sendMessage(Loc.msg(sp, "msg.purify.beam")
                 .formatted(Formatting.GOLD), false);
-        sp.sendMessage(Text.literal("§a凋零病毒被净化了。蓝色的雾气消散，地表重新长出绿草。")
+        sp.sendMessage(Loc.msg(sp, "msg.purify.blight")
                 .formatted(Formatting.GREEN), false);
     }
 

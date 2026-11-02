@@ -1,6 +1,5 @@
 package net.awakeningrotb.story;
 
-import net.awakeningrotb.AwakeningRotb;
 import net.minecraft.network.packet.s2c.play.ClearTitleS2CPacket;
 import net.minecraft.network.packet.s2c.play.OverlayMessageS2CPacket;
 import net.minecraft.network.packet.s2c.play.SubtitleS2CPacket;
@@ -9,14 +8,9 @@ import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -25,20 +19,20 @@ import java.util.UUID;
  * <p>职责：
  * <ol>
  *   <li>按 tick 推进每个玩家的 cutscene（逐行推文本）</li>
- *   <li>cutscene 播完后进入「任务阶段」，轮询 {@link Era#OBJECTIVES}</li>
+ *   <li>cutscene 播完后进入「任务阶段」，轮询 {@link Era#OBJECTIVE_TEXTS}</li>
  *   <li>任务完成 → 推进到下一纪元，播放下一段 cutscene</li>
  *   <li>第十四纪结束后播放终末之诗，进入自由段</li>
  * </ol>
  *
  * <p>所有状态都落在 {@link StoryState}（世界存档），掉线重连不丢进度。
+ *
+ * <p><b>语言</b>：每个玩家按自己的客户端语言取文本（中文 / 英文），
+ * 见 {@link Loc}。
  */
 public final class StoryManager {
 
     /** 每行 cutscene 之间的间隔（tick）。20 tick = 1 秒。 */
     private static final int LINE_INTERVAL = 22;
-
-    /** 剧情音效注册表 —— 后面 ModSounds 补齐后接上。 */
-    public static final Map<Integer, net.minecraft.registry.entry.RegistryEntry<net.minecraft.sound.SoundEvent>> CUES = new HashMap<>();
 
     /** flag: 世界已被信标净化 */
     public static final int FLAG_PURIFIED = 0;
@@ -51,7 +45,8 @@ public final class StoryManager {
     }
 
     /** 每 server tick 调用一次。 */
-    public static void tick(MinecraftServer server) {        for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
+    public static void tick(MinecraftServer server) {
+        for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
             ServerWorld world = player.getServerWorld();
             StoryState state = StoryState.of(world);
             StoryProgress progress = state.get(player);
@@ -82,9 +77,11 @@ public final class StoryManager {
                     onObjectiveComplete(player, progress);
                 } else {
                     // 任务提示常驻 action bar
+                    String lang = Loc.langOf(player);
                     player.networkHandler.sendPacket(new OverlayMessageS2CPacket(
-                            Text.literal("§e⏳ ").append(Text.literal(
-                                            StoryProgress.objectiveTextFor(progress.era)).formatted(Formatting.GRAY))));
+                            Text.literal(Loc.str(lang, "msg.objective.prefix")).formatted(Formatting.YELLOW)
+                                    .append(Text.literal(Loc.objective(lang, progress.era))
+                                            .formatted(Formatting.GRAY))));
                 }
             }
         }
@@ -126,14 +123,15 @@ public final class StoryManager {
 
     /** 推进 cutscene 文本行。 */
     private static void advanceCutscene(ServerPlayerEntity player, StoryProgress progress) {
-        String[] lines = StoryProgress.linesFor(progress.era);
+        String lang = Loc.langOf(player);
+        String[] lines = Loc.lines(lang, progress.era);
         String[] colors = StoryProgress.colorsFor(progress.era);
 
         if (progress.cutsceneLine == 0) {
             // 纪元标题卡
             showTitle(player,
-                    Text.literal(Era.cnNumber(progress.era) + "纪").formatted(Formatting.GOLD, Formatting.BOLD),
-                    Text.literal(subtitleOf(progress.era)).formatted(Formatting.YELLOW));
+                    Text.literal(Loc.eraNumber(lang, progress.era)).formatted(Formatting.GOLD, Formatting.BOLD),
+                    Text.literal(Loc.eraName(lang, progress.era)).formatted(Formatting.YELLOW));
             player.playSound(net.minecraft.sound.SoundEvents.BLOCK_BEACON_ACTIVATE, 0.7f, 1.4f);
         }
 
@@ -147,14 +145,15 @@ public final class StoryManager {
 
         String line = lines[progress.cutsceneLine];
         String color = progress.cutsceneLine < colors.length ? colors[progress.cutsceneLine] : "white";
-        player.sendMessage(Text.literal("§" + colorCode(color) + line), false);
+        player.sendMessage(Text.literal(line).formatted(Loc.colorOf(color)), false);
         progress.cutsceneLine++;
     }
 
     /** 任务完成 → 推进纪元。 */
     private static void onObjectiveComplete(ServerPlayerEntity player, StoryProgress progress) {
+        String lang = Loc.langOf(player);
         player.playSound(net.minecraft.sound.SoundEvents.ENTITY_PLAYER_LEVELUP, 0.6f, 1.2f);
-        player.sendMessage(Text.literal("§a✔ 任务完成").formatted(Formatting.GREEN, Formatting.BOLD), false);
+        player.sendMessage(Loc.msg(player, "msg.objective.done").formatted(Formatting.GREEN, Formatting.BOLD), false);
 
         if (progress.era >= Era.COUNT - 1) {
             // 最后一纪完成 → 终末之诗 → 自由段
@@ -178,23 +177,26 @@ public final class StoryManager {
 
     /** 终末之诗 —— 唯一结局。 */
     private static void playEnding(ServerPlayerEntity player, StoryProgress progress) {
+        String lang = Loc.langOf(player);
         showTitle(player,
-                Text.literal("终末之诗").formatted(Formatting.DARK_PURPLE, Formatting.BOLD),
-                Text.literal("The Final Poem").formatted(Formatting.LIGHT_PURPLE));
+                Loc.msg(player, "msg.ending.title").formatted(Formatting.DARK_PURPLE, Formatting.BOLD),
+                Loc.msg(player, "msg.ending.subtitle").formatted(Formatting.LIGHT_PURPLE));
 
-        String[] lines = StoryText.ENDING;
+        String[] lines = Loc.ending(lang);
         String[] colors = StoryText.ENDING_COLOR;
         for (int i = 0; i < lines.length; i++) {
             String color = i < colors.length ? colors[i] : "white";
-            player.sendMessage(Text.literal("§" + colorCode(color) + lines[i]), false);
+            player.sendMessage(Text.literal(lines[i]).formatted(Loc.colorOf(color)), false);
         }
     }
 
     /** 任务阶段开始时给一个提示标题。 */
     private static void showObjectiveTitle(ServerPlayerEntity player, StoryProgress progress) {
+        String lang = Loc.langOf(player);
         showTitle(player,
-                Text.literal("⛏ " + Era.cnNumber(progress.era) + "纪 · 任务").formatted(Formatting.YELLOW, Formatting.BOLD),
-                Text.literal(StoryProgress.objectiveTextFor(progress.era)).formatted(Formatting.GRAY));
+                Text.literal(Loc.str(lang, "msg.task.title") + Loc.eraNumber(lang, progress.era))
+                        .formatted(Formatting.YELLOW, Formatting.BOLD),
+                Text.literal(Loc.objective(lang, progress.era)).formatted(Formatting.GRAY));
     }
 
     /** 发送标题 + 副标题。 */
@@ -209,40 +211,13 @@ public final class StoryManager {
         player.networkHandler.sendPacket(new ClearTitleS2CPacket(true));
     }
 
-    /** 纪元副标题（共生 / 下界远征 ...）—— 去掉"第N纪 · "前缀，只留名字。 */
-    public static String subtitleOf(int era) {
-        String title = StoryProgress.titleFor(era);
-        int idx = title.indexOf("·");
-        if (idx >= 0) {
-            return title.substring(idx + 1).trim();
-        }
-        return title;
+    /** 纪元副标题（共生 / Symbiosis）。 */
+    public static String subtitleOf(String lang, int era) {
+        return Loc.eraName(lang, era);
     }
 
-    /** 纪元完整标题（第一纪 · 共生），用于进度显示。 */
-    public static String fullTitleOf(int era) {
-        return Era.cnNumber(era) + "纪 · " + subtitleOf(era);
-    }
-
-    /** MC 颜色名 → 格式代码。 */
-    public static String colorCode(String name) {
-        return switch (name) {
-            case "gold" -> "6";
-            case "yellow" -> "e";
-            case "gray" -> "7";
-            case "dark_gray" -> "8";
-            case "white" -> "f";
-            case "red" -> "c";
-            case "dark_red" -> "4";
-            case "green" -> "a";
-            case "dark_green" -> "2";
-            case "aqua" -> "b";
-            case "dark_aqua" -> "3";
-            case "blue" -> "9";
-            case "dark_blue" -> "1";
-            case "light_purple" -> "d";
-            case "dark_purple" -> "5";
-            default -> "f";
-        };
+    /** 纪元完整标题（第一纪 · 共生 / Era I · Symbiosis），用于进度显示。 */
+    public static String fullTitleOf(String lang, int era) {
+        return Loc.eraNumber(lang, era) + " · " + Loc.eraName(lang, era);
     }
 }
