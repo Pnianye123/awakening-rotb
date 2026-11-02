@@ -56,6 +56,9 @@ public class AwakeningCommand {
             return 0;
         }
 
+        // 清掉上一局残留的剧情 NPC / Boss（否则重复 start 会叠加生成）
+        net.awakeningrotb.story.StoryBoss.clearStoryEntities(player);
+
         progress.reset();
         progress.started = true;
         progress.era = 0;
@@ -66,7 +69,9 @@ public class AwakeningCommand {
         player.sendMessage(Text.literal("§6《方块之下》—— 剧情开始。").formatted(Formatting.GOLD, Formatting.BOLD), false);
         player.sendMessage(Text.literal("§7你在这个世界上醒来……但你好像已经走了很久。").formatted(Formatting.GRAY), false);
 
-        // 发建造师长袍 + 记录仪 —— 玩家身份标识与剧情触发器
+        // 发建造师长袍 + 记录仪 + 共鸣石 —— 玩家身份标识与剧情触发器
+        // 先清掉旧的同类物品，避免重复 /awakening start 时叠加
+        net.awakeningrotb.story.StoryRewards.clearRewardItems(player);
         net.awakeningrotb.story.StoryItems.give(player, net.awakeningrotb.item.ModItems.BUILDER_ROBE, 1);
         net.awakeningrotb.story.StoryItems.give(player, net.awakeningrotb.item.ModItems.RECORDER, 1);
         net.awakeningrotb.story.StoryItems.give(player, net.awakeningrotb.item.ModItems.RESONANCE_STONE, 1);
@@ -110,6 +115,11 @@ public class AwakeningCommand {
                 + " §7坚守者：§f" + fS + " §7凋零之子：§f" + fWither).formatted(Formatting.GRAY), false);
 
         ctx.getSource().sendFeedback(() -> Text.literal("§7计数器：§f" + progress.counters)
+                .formatted(Formatting.GRAY), false);
+
+        // 附近的共鸣方块（第八纪净化用；玩家自己也能看到「方块放对没」）
+        int nearbyBlocks = net.awakeningrotb.story.StoryEvents.countResonanceBlocks(world, player.getBlockPos());
+        ctx.getSource().sendFeedback(() -> Text.literal("§7共鸣方块：§f" + nearbyBlocks)
                 .formatted(Formatting.GRAY), false);
 
         // 背包明细（用注册表 id，不依赖客户端能否识别 mod 物品名）
@@ -192,6 +202,7 @@ public class AwakeningCommand {
         }
         ServerWorld world = player.getServerWorld();
         StoryState.of(world).get(player).reset();
+        net.awakeningrotb.story.StoryBoss.clearStoryEntities(player);
         player.sendMessage(Text.literal("§7剧情进度已重置。").formatted(Formatting.GRAY), false);
         return 1;
     }

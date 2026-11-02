@@ -42,12 +42,13 @@ public final class StoryRewards {
         player.playSound(net.minecraft.sound.SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1.0f, 1.0f);
     }
 
-    /** 清掉已有的自由段奖励物品（用于避免重复发放）。 */
-    private static void clearRewardItems(ServerPlayerEntity player) {
+    /** 清掉已有的剧情物品（避免重复发放）。 */
+    public static void clearRewardItems(ServerPlayerEntity player) {
         net.minecraft.item.Item[] rewards = {
                 ModItems.BUILDER_ROBE, ModItems.RESONANCE_STONE, ModItems.SOUL_COMPASS,
                 ModItems.ANCIENT_CITY_PASS, ModItems.WITHER_CORE, ModItems.AWAKENED_TOKEN,
-                ModItems.ANCIENT_CITY_KEY, ModItems.RECORD_A, ModItems.RECORD_B, ModItems.RECORD_C
+                ModItems.ANCIENT_CITY_KEY, ModItems.RECORD_A, ModItems.RECORD_B, ModItems.RECORD_C,
+                ModItems.RECORDER, ModItems.SOUL_SHARD, ModItems.ECHO_SHARD
         };
         for (int i = 0; i < player.getInventory().size(); i++) {
             net.minecraft.item.ItemStack stack = player.getInventory().getStack(i);

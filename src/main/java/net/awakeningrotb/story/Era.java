@@ -61,8 +61,12 @@ public final class Era {
                 net.minecraft.entity.boss.WitherEntity wither = StoryBoss.spawnWitherSon(player, true);
                 StoryBoss.spawnSentinel(player, wither);
             }
-            // 第八纪 · 信标净化 —— 远古古城方向给出提示
+            // 第八纪 · 信标净化 —— 发放共鸣方块 + 下界之星
+            // ⚠️ 下界之星是 guardian 才掉的稀有物，玩家不一定有 —— 剧情直接发，
+            //    否则第八纪会把人卡死
             case 7 -> {
+                StoryItems.give(player, net.awakeningrotb.item.ModItems.RESONANCE_BLOCK_ITEM, 8);
+                StoryItems.give(player, Items.NETHER_STAR, 1);
             }
             // 第九纪 · 灾厄的反噬 —— 三个邪术师暴走
             case 8 -> StoryBoss.spawnWarlocks(player, 3);
