@@ -1,11 +1,19 @@
 #!/usr/bin/env node
-// 生成《方块之下》Modrinth 图标 128x128 PNG —— 无第三方依赖（只用 Node 内置 zlib）
+// 生成《方块之下》Modrinth 图标 PNG —— 无第三方依赖（只用 Node 内置 zlib）
 // 视觉：黑底 + 淡金古城方块网格 → 双层金边 → 兜帽建造师剪影 + 两道金色眼缝 → 胸前金色 X 印记
+//
+// 用法：node tools/make-icon.js [输出路径] [尺寸]
+//   node tools/make-icon.js                      → 默认路径 + 512x512
+//   node tools/make-icon.js /tmp/i.png 128        → 指定路径和尺寸
+//
+// 2026-11-02（Efe）：原来尺寸写死 128x128，但 Modrinth 图标要求 512x512
+//   → 改成参数化 + 最近邻放大（保持像素画风硬边，不糊）
 'use strict';
 const fs = require('fs');
 const zlib = require('zlib');
 
-const W = 128, H = 128;
+const W = 128, H = 128;            // 绘制分辨率（像素画风在这上面最准）
+const OUT = Math.max(1, parseInt(process.argv[3] || '512', 10) || 512);
 
 const BG_DARK = [0x10, 0x10, 0x10];
 const BG_MID  = [0x1a, 0x17, 0x12];
@@ -126,10 +134,28 @@ rect(56, 97, 16, 3, GOLD);
 rect(52, 116, 24, 2, GOLD_D, 150);
 
 // ---------- 编码 PNG ----------
-const raw = Buffer.alloc((W * 4 + 1) * H);
-for (let y = 0; y < H; y++) {
-  raw[y * (W * 4 + 1)] = 0; // filter: none
-  Buffer.from(px.buffer, y * W * 4, W * 4).copy(raw, y * (W * 4 + 1) + 1);
+// 最近邻放大到 OUT×OUT（Modrinth 要求 512×512）
+const scale = OUT / W;
+const outW = Math.round(W * scale);
+const outH = Math.round(H * scale);
+const outPx = new Uint8Array(outW * outH * 4);
+for (let y = 0; y < outH; y++) {
+  const sy = Math.min(H - 1, Math.floor(y / scale));
+  for (let x = 0; x < outW; x++) {
+    const sx = Math.min(W - 1, Math.floor(x / scale));
+    const si = (sy * W + sx) * 4;
+    const di = (y * outW + x) * 4;
+    outPx[di] = px[si];
+    outPx[di + 1] = px[si + 1];
+    outPx[di + 2] = px[si + 2];
+    outPx[di + 3] = px[si + 3];
+  }
+}
+
+const raw = Buffer.alloc((outW * 4 + 1) * outH);
+for (let y = 0; y < outH; y++) {
+  raw[y * (outW * 4 + 1)] = 0; // filter: none
+  Buffer.from(outPx.buffer, y * outW * 4, outW * 4).copy(raw, y * (outW * 4 + 1) + 1);
 }
 
 const CRC_TABLE = (() => {
@@ -158,8 +184,8 @@ function chunk(type, data) {
 }
 
 const ihdr = Buffer.alloc(13);
-ihdr.writeUInt32BE(W, 0);
-ihdr.writeUInt32BE(H, 4);
+ihdr.writeUInt32BE(outW, 0);
+ihdr.writeUInt32BE(outH, 4);
 ihdr[8] = 8;   // bit depth
 ihdr[9] = 6;   // color type RGBA
 ihdr[10] = 0;  // compression
@@ -175,4 +201,4 @@ const png = Buffer.concat([
 
 const out = process.argv[2] || '/home/yifan/awakening-rotb/icon.png';
 fs.writeFileSync(out, png);
-console.log('written', out, png.length, 'bytes');
+console.log('written', out, png.length, 'bytes', outW + 'x' + outH);

@@ -2,6 +2,11 @@
 
 > Jimmy 专用的发布小抄。注册完 Modrinth 账号、Create Project 时照着抄就行。
 > 改文字时只改这一个文件，别去改根 README——那是给 GitHub 看的，Modrinth 这里要更"项目页"一点。
+>
+> ⚠️ **2026-11-02 重写**：旧版（2026-09-29）是在项目还是「Datapack MVP」时写的，
+> 全部字段按 datapack 填。**项目后来转型成 Fabric Java mod**，旧版填法会让 Modrinth
+> 建出一个类型错误的项目页（datapack 的 project type 不收 jar、也不填 loader）。
+> 本版按**实际交付物**核对过：21 个 Java 文件 / `fabric.mod.json` / MC 1.21.4 / Fabric 0.16.14。
 
 ---
 
@@ -11,9 +16,9 @@
 |---|---|
 | **Project name** | `Awakening: Return of the Builder` |
 | **Project slug** | `awakening-rotb`（自动从 name 生成，确认是这条就行） |
-| **Project type** | **Datapack**（不是 Mod，要选对） |
+| **Project type** | **`Mod`** ⚠️ 不是 Datapack（老版本这里写错了） |
 | **Short description** | 见下方"二" |
-| **Categories** | `Adventure` 必选；可选加 `Quest`（剧情向） |
+| **Categories** | `Adventure` 必选；可选加 `Roleplay` / `Scenario` |
 | **Additional categories** | — |
 | **License** | `MIT` |
 | **Homepage URL** | `https://github.com/Pnianye123/awakening-rotb` |
@@ -22,16 +27,20 @@
 | **Issues URL** | `https://github.com/Pnianye123/awakening-rotb/issues` |
 
 > ⚠️ Modrinth 创建 Project 时**不会**让你填 Minecraft 版本 / Loader——这些在上传 Version 时填。表单一提交立刻跳到 "Upload a version" 页面。
+>
+> ⚠️ 老版本这里写的是 "Datapack"。**这是错的**：这项目有 21 个 Java 文件、
+> `fabric.mod.json`、自定义物品/方块/音效注册、Fabric API 依赖 → 只能选 **Mod**。
+> 选错 Datapack 的话：上传页不会让你选 Fabric loader，而且 datapack 类型不接受 jar。
 
 ---
 
 ## 二、Short Description（≤200 字符，直接复制）
 
 ```
-Wake as the ancient Builder and relive 14 continuous eras of Minecraft history — from the Symbiosis Era to the End Poem. A story-driven datapack. One ending.
+Wake as the ancient Builder and relive 14 continuous eras of Minecraft history — from the Symbiosis Era to the End Poem. A story-driven Fabric mod. One ending.
 ```
 
-字符数：157 ✅
+字符数：155 ✅（老版本写的是 "datapack"，已改）
 
 ---
 
@@ -45,7 +54,7 @@ Wake as the ancient Builder and relive 14 continuous eras of Minecraft history �
 
 > *You are not from this world. But you have walked this land for a very long time.*
 
-A story-driven Minecraft datapack. You wake as the ancient Builder — asleep for millennia — and relive 14 continuous eras of history: from the Symbiosis Era with the villagers, through the Wither's birth, the Echo Sentinel, the Dragon War, and finally the End Poem.
+A story-driven Minecraft mod for **Fabric**. You wake as the ancient Builder — asleep for millennia — and relive 14 continuous eras of history: from the Symbiosis Era with the villagers, through the Wither's birth, the Echo Sentinel, the Dragon War, and finally the End Poem.
 
 **This is not a chapter-select menu. It is one continuous story.** When one thing ends, the next begins. There is only one ending: the End Poem.
 
@@ -56,60 +65,80 @@ A story-driven Minecraft datapack. You wake as the ancient Builder — asleep fo
 | # | Era | Summary |
 |---|-----|---------|
 | — | Awakening | You wake. The world has been empty for thousands of years. |
-| 1 | Symbiosis | Villagers and Builders live in peace. |
-| 2 | Nether Expedition | The Builders open the Nether portal. Many do not return. |
-| 3 | The Calamity's Mercy | Some villagers turn to dark arts — but they will not harm you. |
-| 4 | Request to Resurrect | The Builders ask the Calamity villagers to bring back the dead. |
-| 5 | The Wither's Sin | A forbidden experiment gives birth to the Wither. |
-| 6 | The Wither Plague | The plague spreads. The overworld falls. |
-| 7 | The Echo Sentinel | You summon the Sentinel from soul and shriek. |
-| 8 | Beacon Purification | You raise the beacon. The plague is cleansed. |
-| 9 | The Calamity's Revenge | The Calamity villagers, their resurrection broken, become dark mages. |
-| 10 | The Second Hiding | You retreat into the stronghold. |
-| 11 | The End Expedition | Eyes of Ender open the End portal. |
-| 12 | Dragon War | You fight every Ender Dragon — and leave one to guard the gate. |
-| 13 | End Civilization | You found the End City. You invent Elytra. |
-| 14 | The No-Return Path | You become an Enderman... then wake in the present. |
+| 1 | 共生 Symbiosis | Villagers and Builders live in peace. The Awakener appears as your guide. |
+| 2 | 下界远征 Nether Expedition | The Builders open the Nether portal. Many do not return. |
+| 3 | 灾厄的善意 The Calamity's Mercy | Some villagers turn to dark arts — but they will not harm you. |
+| 4 | 请求复活 Request to Resurrect | The Builders ask the Calamity villagers to bring back the dead. |
+| 5 | 凋零之罪 The Wither's Sin | A forbidden experiment gives birth to the Wither. |
+| 6 | 凋零病毒 The Wither Plague | The plague spreads. The overworld falls. |
+| 7 | 坚守者 The Echo Sentinel | You summon the Sentinel from soul and shriek. |
+| 8 | 信标净化 Beacon Purification | You raise the beacon. The plague is cleansed. |
+| 9 | 灾厄的反噬 The Calamity's Revenge | The Calamity villagers, their resurrection broken, become dark mages. |
+| 10 | 再次躲避 The Second Hiding | You retreat into the stronghold. |
+| 11 | 末地远征 The End Expedition | Eyes of Ender open the End portal. |
+| 12 | 龙之战 Dragon War | You fight every Ender Dragon — and leave one to guard the gate. |
+| 13 | 末地文明 End Civilization | You found the End City. You invent Elytra. |
+| 14 | 不归路 The No-Return Path | You become an Enderman... then wake in the present. |
 | — | End Poem | The only ending. Two voices speak. You do not fully understand. You know it is not over. |
 
 ---
 
-## Current Version: v0.1 — Datapack MVP
+## What's in the mod
 
-A prototype of the full story arc. **No Fabric. No Java. Vanilla-compatible.**
-
-- ✅ All 14 eras + End Poem trigger automatically
-- ✅ Continuous playback (~2.5 minutes total)
-- ✅ Title, lore text, and advancement per era
-- ⏳ Cutscenes — planned for v0.5
-- ⏳ Builder's Robe skin — planned for v0.5
-- ⏳ Echo Sentinel boss fight — planned for v1.0
-
-### Install (v0.1)
-
-1. Download `awakening-rotb-v0.1.zip` from the version page below.
-2. Extract to `.minecraft/saves/<your world>/datapacks/awakening-rotb/`.
-3. Enter the world.
-4. Run `/reload`, then `/function awakening:setup`.
-
-### Debug
-
-```
-/function awakening:era1          # jump to era 1
-/function awakening:era7          # jump to era 7 (Echo Sentinel)
-/function awakening:ending        # jump to End Poem
-/scoreboard players set @s awakening.current_era 14   # then /function awakening:advance_era
-/advancement revoke @s everything # reset all progress
-```
+- **14 eras of continuous story** with original lore text, a title card and an advancement per era
+- **Every era has a task you must complete by hand** — talk to villagers, mine obsidian, hand over a soul, summon the boss, raise the beacon
+- **Two-part structure**: a 60–90 minute story arc, then a permanent free-play segment with 10 unlockable rewards
+- **Story bosses** built on vanilla entities (Awakener, Calamity Cultists, Wither Son, the Echo Sentinel)
+- **The Echo Sentinel summoning ritual** — find a sculk sensor, use the soul shard + echo stone to wake the guardian yourself
+- **The Beacon Purification ritual** — place the resonance block, then strike it with a Nether Star to cleanse the world
+- **13 custom items** (Builder's Robe, Resonance Stone, Soul Compass, Soul Shard, Echo Shard, Ancient City Key/Pass, Awakened Token, Wither Core, Recorder, 3 music discs)
+- **7 custom blocks** (Resonance Block, Soul Lantern, Builder's Brick, Reinforced Echo Stone, Wither Rift, Awakened Totem, Builder's Robe block)
+- **3 original music discs** (72s / 66s / 115s) — composed for this mod
+- **Ancient City world generation** — a custom structure feature
+- **A `/awakening` command** for starting, inspecting, skipping eras, and free-play rewards
 
 ---
 
-## Roadmap
+## Current Version: v1.0.0
 
-- **v0.5** — Fabric Java mod core: Builder's Robe, cutscenes, Awakener NPC
-- **v1.0** — Full story: Echo Sentinel boss, beacon quest, End Poem playback
-- **v1.5** — Free-play rewards: Builder's Robe, Resonance Stone, 3 original disc tracks
-- **v2.0+** — Multi-language, Modpack companion
+A complete playthrough of the 14-era story arc.
+
+- ✅ All 14 eras + the End Poem, played as one continuous flow
+- ✅ One hand-completed objective per era
+- ✅ Echo Sentinel summoning ritual (era 7)
+- ✅ Beacon Purification ritual (era 8)
+- ✅ Wither Son boss fight, Calamity Cultist encounters
+- ✅ 13 items / 7 blocks / 3 original music discs / 20 recipes
+- ✅ Ancient City structure generation
+- ✅ Free-play segment with 10 rewards
+- ✅ `/awakening` command: `start` · `status` · `skip` · `freeplay` · `debug` · `reset`
+
+### Requirements
+
+- Minecraft **1.21.4**
+- **Fabric Loader** 0.16.14+
+- **Fabric API** 0.110.0+ (required — see the Dependencies tab)
+- Java 21+
+
+### Install
+
+1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for 1.21.4
+2. Download [Fabric API](https://modrinth.com/mod/fabric-api) 0.110.0+ for 1.21.4
+3. Put both `fabric-api` and `awakening-rotb-1.0.0.jar` into your `mods/` folder
+4. Launch the game, create a world, run `/awakening start`
+
+> This mod must be installed on **both** the client and the server.
+
+### Commands
+
+```
+/awakening start      # begin the story from the Awakening
+/awakening status     # current era, boss counts, resonance blocks, inventory
+/awakening skip <n>   # jump to era n (debugging / skipping ahead)
+/awakening freeplay   # unlock the free-play segment and its rewards
+/awakening debug      # detailed diagnostic readout
+/awakening reset      # wipe all story progress
+```
 
 ---
 
@@ -140,41 +169,75 @@ Issues: https://github.com/Pnianye123/awakening-rotb/issues
 
 ---
 
-## 四、Upload Version 表单字段（v0.1 那一步用）
+## 四、Upload Version 表单字段
 
 | 字段 | 填什么 |
 |---|---|
-| **Version number** | `0.1.0` |
-| **Version title** | `v0.1 — Datapack MVP` |
+| **Version number** | `1.0.0` ⚠️（老版本写的 `0.1.0`） |
+| **Version title** | `v1.0.0 — The 14 Eras` |
 | **Version changelog** | 见下方 |
-| **Minecraft versions** | `1.21`, `1.21.1`, `1.21.2`, `1.21.3`, `1.21.4`（多选） |
-| **Mod loaders** | `datapack`（多选；v0.5+ 才有 Fabric 选项） |
-| **File** | 上传 `awakening-rotb-v0.1.zip`（29 KB，在 file-share 里有） |
+| **Minecraft versions** | `1.21.4` ⚠️ **只勾这一个**（老版本勾了 1.21–1.21.4 五个，本 mod 只在 1.21.4 上验证过） |
+| **Mod loaders** | **`Fabric`** ⚠️（老版本写的 `datapack`） |
+| **Client side** | `Required` — 本 mod 注册了自定义物品/方块/音效，客户端必须装 |
+| **Server side** | `Required` — `environment: *` |
+| **File** | 上传 **`awakening-rotb-1.0.0.jar`**（3.9 MB）⚠️ 不是 zip、不是 v0.1 |
+
+> ⚠️ **File 上传的是 jar 本体**，不是 `awakening-rotb-v1.0-test.zip`。
+> zip 是给玩家的「源码 + 中文说明」完整包，走 8099 / file-share 那个渠道；
+> Modrinth 只收 jar。
+
+### 依赖（Dependencies 标签页）
+
+| 关系 | 平台 | 项目 | 版本 |
+|---|---|---|---|
+| **Required** | Client + Server | [Fabric API](https://modrinth.com/mod/fabric-api) | `>=0.110.0` |
+
+> `fabric.mod.json` 里 `depends` 写的是 `fabric-api: *`，但实际在 1.21.4 上验证的是 0.110.0+，
+> 所以在 Modrinth 上按 `>=0.110.0` 填更准。
 
 ### Changelog（直接复制）
 
 ```
-First public release — Datapack MVP.
+The complete 14-era story arc.
 
-The 14-era story arc plays end-to-end as a continuous flow:
-- Awakening → 14 Eras → End Poem
-- Automatic progression (~2.5 min total, ~10s between eras)
-- Title + lore text + advancement per era
-- Debug functions for jumping between eras
-- Pure datapack — vanilla 1.21.x only, no Fabric or Java needed
+Story:
+- All 14 eras plus the End Poem, played as one continuous flow
+- One hand-completed objective per era (talk, mine, craft, fight, purify)
+- The Echo Sentinel summoning ritual — wake the guardian yourself with a soul shard and a shriek
+- The Beacon Purification ritual — place the resonance block, strike it with a Nether Star
+- Wither Son boss fight and the three Calamity Cultists
 
-Cutscenes, the Builder's Robe, and the Echo Sentinel boss are planned for v0.5+ and not included here.
+Content:
+- 13 custom items, 7 custom blocks
+- 3 original music discs (72s / 66s / 115s)
+- 20 crafting recipes
+- Ancient City structure generation
+- Free-play segment with 10 rewards after the End Poem
+- /awakening command: start, status, skip, freeplay, debug, reset
 
-This is a prototype. The lore and pacing are still being tuned. Bug reports and story feedback welcome on GitHub.
+Requires Minecraft 1.21.4, Fabric Loader 0.16.14+, Fabric API 0.110.0+, Java 21+.
+Install on both client and server.
 ```
 
 ---
 
 ## 五、图标 / 横幅
 
-- **Icon**：512×512 PNG，正方形。Modrinth 必填。**v0.1 阶段可以用占位符**——比如一张古城远景图、或者"AB"两个字母 + 黑金主题。Jimmy 之后再画正式的。
-- **Banner**：项目页顶部横幅，可选，v0.1 不传也行。
-- 颜色建议：黑底 + 金色（呼应建造师主题）。可以用 `#000000` 背景 + `#FFD700` 文字。
+- **Icon**：**仓库根目录就有现成的** —— `icon.png`，**512×512 PNG**（Modrinth 硬性要求，正好达标）。
+  重新生成（改视觉后）：
+  ```bash
+  cd /home/yifan/awakening-rotb
+  node tools/make-icon.js icon.png 512     # 尺寸可传，默认 512
+  ```
+  生成器是自包含的（只用 Node 内置 zlib，无第三方依赖），128→512 最近邻放大保持像素画风硬边。
+
+  > ⚠️ 注意区分两个 icon：
+  > - `icon.png`（根目录）= **Modrinth 上传用的**，512×512，黑金兜帽建造师剪影
+  > - `assets/awakening/icon.png`（jar 内）= Fabric mod 列表里显示的，512×512，另一套设计
+  > 上传 Modrinth 用**根目录那个**。
+
+- **Banner**：项目页顶部横幅，可选。想传可以从 game 里截一张远古古城/black-gold 主题的图。**不传也能发布**。
+- 颜色建议：黑底 + 金色（呼应建造师主题）。
 
 ---
 
@@ -182,19 +245,41 @@ This is a prototype. The lore and pacing are still being tuned. Bug reports and 
 
 - [ ] Project name: `Awakening: Return of the Builder`
 - [ ] Slug: `awakening-rotb`
-- [ ] Project type: **Datapack**（不是 Mod）
-- [ ] Categories: `Adventure`（可选加 `Quest`）
+- [ ] Project type: **`Mod`**（⚠️ 不是 Datapack —— 这是旧版最大的坑）
+- [ ] Categories: `Adventure`
 - [ ] License: `MIT`
 - [ ] Homepage URL: `https://github.com/Pnianye123/awakening-rotb`
 - [ ] Long description 已经粘进去
-- [ ] 上传 v0.1 zip，version number `0.1.0`
-- [ ] Minecraft versions: 1.21 / 1.21.1 / 1.21.2 / 1.21.3 / 1.21.4
-- [ ] Mod loader: `datapack`
+- [ ] 上传 `awakening-rotb-1.0.0.jar`
+- [ ] Version number `1.0.0`
+- [ ] Minecraft versions: **只勾 `1.21.4`**
+- [ ] Mod loader: **`Fabric`**
+- [ ] Client side: `Required` / Server side: `Required`
+- [ ] Dependencies: Fabric API `>=0.110.0`（Required，Client+Server）
 - [ ] changelog 已经粘进去
-- [ ] 图标（占位符也行）已经传
+- [ ] icon.png 已经传（512×512，仓库根目录那个）
 
-完成后 Modrinth 会给你一个项目链接，类似 `https://modrinth.com/datapack/awakening-rotb`。把那个链接发给 Jimmy 我们再继续下一步（README 加 Modrinth badge / Modpack 那一侧）。
+完成后 Modrinth 会给你一个项目链接，类似 `https://modrinth.com/mod/awakening-rotb`。
+把那个链接发给 Jimmy 我们再继续下一步（README 加 Modrinth badge / Modpack 那一侧）。
 
 ---
 
-_Generated by Steve · 2026-09-29_
+## 七、⚠️ 版本号不一致（发布前值得想一下）
+
+| 地方 | 值 |
+|---|---|
+| git commit message | `v1.0.1`（两个 commit 都写 v1.0.1） |
+| `gradle.properties` 的 `mod_version` | `1.0.0` |
+| jar 内 `fabric.mod.json` 的 `version` | `1.0.0` |
+| 交付文件名 | `awakening-rotb-1.0.0.jar` |
+
+**Modrinth 的 Version number 要跟 jar 内部版本号一致**（游戏里 `/awakening status` 显示的就是它），
+所以填 `1.0.0` 是对的、也是当前唯一自洽的选择。
+
+如果想让 commit 里的 "v1.0.1" 也对上，**先改 `gradle.properties` 的 `mod_version=1.0.1` 再重新 build**，
+然后 Modrinth 填 `1.0.1`。代价是重 build + 重跑 e2e + 重传 jar —— 建议**先按 1.0.0 发布**，
+回头再统一升版号（Modrinth 支持后续再发新 version）。
+
+---
+
+_Updated by Efe · 2026-11-02（原文 Steve · 2026-09-29）_
