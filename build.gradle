@@ -19,6 +19,13 @@ repositories {
     }
 }
 
+loom {
+    // mixin refmap —— 生产环境（intermediary）下 client mixin 要靠它映射回原版方法名
+    mixin {
+        defaultRefmapName = "awakening-rotb-refmap.json"
+    }
+}
+
 dependencies {
     // To change the versions see the gradle.properties file.
     minecraft "com.mojang:minecraft:${project.minecraft_version}"

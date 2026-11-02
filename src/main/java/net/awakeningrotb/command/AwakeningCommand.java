@@ -97,8 +97,28 @@ public class AwakeningCommand {
         StoryItems.give(player, net.awakeningrotb.item.ModItems.RECORDER, 1);
         StoryItems.give(player, net.awakeningrotb.item.ModItems.RESONANCE_STONE, 1);
 
+        // 穿上长袍 —— 客户端会据此把玩家显示成远古建造师（皮肤 + 胸甲）
+        equipBuilderRobe(player);
+
         Era.enterEra(0, player, progress);
         return 1;
+    }
+
+    /**
+     * 把建造师长袍穿上玩家的胸甲槽。
+     *
+     * <p>客户端的 {@code BuilderSkinMixin} 以「胸甲槽里是建造师长袍」为信号，
+     * 穿上 = 你就是远古建造师（皮肤也变）。换下长袍就变回原样。
+     */
+    private static void equipBuilderRobe(ServerPlayerEntity player) {
+        net.minecraft.entity.EquipmentSlot chest = net.minecraft.entity.EquipmentSlot.CHEST;
+        // 先记下旧的胸甲（equipStack 返回 void），穿上后再把旧的丢地上
+        net.minecraft.item.ItemStack old = player.getEquippedStack(chest);
+        player.equipStack(chest,
+                new net.minecraft.item.ItemStack(net.awakeningrotb.item.ModItems.BUILDER_ROBE));
+        if (!old.isEmpty()) {
+            player.dropItem(old, false);
+        }
     }
 
     /** 再要一本《前情提要》。 */
