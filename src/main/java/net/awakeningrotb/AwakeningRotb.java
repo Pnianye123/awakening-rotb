@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
  * Awakening: Return of the Builder ——《方块之下》
  *
  * <p>v1.0：完整剧情段。
+ * <p>v1.1：/start 门槛 + 前情提要书 + 中英双语。
  * <ul>
  *   <li>14 段连续纪元 cutscene（逐行叙事 + 标题卡）</li>
  *   <li>每段纪元附带一个必须亲手完成的任务</li>
@@ -29,7 +30,7 @@ public class AwakeningRotb implements ModInitializer {
 
     public static final String MOD_ID = "awakening";
     public static final String MOD_NAME = "Awakening: Return of the Builder";
-    public static final String MOD_VERSION = "1.0.0";
+    public static final String MOD_VERSION = "1.1.0";
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 

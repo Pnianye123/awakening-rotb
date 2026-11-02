@@ -6,7 +6,7 @@
 > ⚠️ **2026-11-02 重写**：旧版（2026-09-29）是在项目还是「Datapack MVP」时写的，
 > 全部字段按 datapack 填。**项目后来转型成 Fabric Java mod**，旧版填法会让 Modrinth
 > 建出一个类型错误的项目页（datapack 的 project type 不收 jar、也不填 loader）。
-> 本版按**实际交付物**核对过：21 个 Java 文件 / `fabric.mod.json` / MC 1.21.4 / Fabric 0.16.14。
+> 本版按**实际交付物**核对过：25 个 Java 文件（2026-11-02 17:28 快照，v1.1.0 加了 L10n/Loc/PrologueBook/StoryTextEn）/ `fabric.mod.json` / MC 1.21.4 / Fabric 0.16.14。
 
 ---
 
@@ -28,7 +28,7 @@
 
 > ⚠️ Modrinth 创建 Project 时**不会**让你填 Minecraft 版本 / Loader——这些在上传 Version 时填。表单一提交立刻跳到 "Upload a version" 页面。
 >
-> ⚠️ 老版本这里写的是 "Datapack"。**这是错的**：这项目有 21 个 Java 文件、
+> ⚠️ 老版本这里写的是 "Datapack"。**这是错的**：这项目有 25 个 Java 文件、
 > `fabric.mod.json`、自定义物品/方块/音效注册、Fabric API 依赖 → 只能选 **Mod**。
 > 选错 Datapack 的话：上传页不会让你选 Fabric loader，而且 datapack 类型不接受 jar。
 
@@ -102,7 +102,7 @@ A story-driven Minecraft mod for **Fabric**. You wake as the ancient Builder —
 
 ---
 
-## Current Version: v1.0.0
+## Current Version: v1.1.0
 
 A complete playthrough of the 14-era story arc.
 
@@ -129,7 +129,7 @@ A complete playthrough of the 14-era story arc.
 
 1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for 1.21.4
 2. Download [Fabric API](https://modrinth.com/mod/fabric-api) 0.110.0+ for 1.21.4
-3. Put both `fabric-api` and `awakening-rotb-1.0.0.jar` into your `mods/` folder
+3. Put both `fabric-api` and `awakening-rotb-1.1.0.jar` into your `mods/` folder
 4. Launch the game, create a world, and enter the world
 5. You will be handed a **prologue book** — read it, then type **`/start`** in chat
 
@@ -183,16 +183,16 @@ Issues: https://github.com/Pnianye123/awakening-rotb/issues
 
 | 字段 | 填什么 |
 |---|---|
-| **Version number** | `1.0.0` ⚠️（老版本写的 `0.1.0`） |
-| **Version title** | `v1.0.0 — The 14 Eras` |
+| **Version number** | `1.1.0` ✅（跟 jar 内部 `fabric.mod.json` 的 version 完全一致） |
+| **Version title** | `v1.1.0 — The Prologue` |
 | **Version changelog** | 见下方 |
 | **Minecraft versions** | `1.21.4` ⚠️ **只勾这一个**（老版本勾了 1.21–1.21.4 五个，本 mod 只在 1.21.4 上验证过） |
 | **Mod loaders** | **`Fabric`** ⚠️（老版本写的 `datapack`） |
 | **Client side** | `Required` — 本 mod 注册了自定义物品/方块/音效，客户端必须装 |
 | **Server side** | `Required` — `environment: *` |
-| **File** | 上传 **`awakening-rotb-1.0.0.jar`**（3.9 MB）⚠️ 不是 zip、不是 v0.1 |
+| **File** | 上传 **`awakening-rotb-1.1.0.jar`**（3.9 MB）⚠️ 不是 zip、不是 v0.1 |
 
-> ⚠️ **File 上传的是 jar 本体**，不是 `awakening-rotb-v1.0-test.zip`。
+> ⚠️ **File 上传的是 jar 本体**，不是 `awakening-rotb-v1.1-test.zip`。
 > zip 是给玩家的「源码 + 中文说明」完整包，走 8099 / file-share 那个渠道；
 > Modrinth 只收 jar。
 
@@ -273,8 +273,8 @@ Install on both client and server.
 - [ ] License: `MIT`
 - [ ] Homepage URL: `https://github.com/Pnianye123/awakening-rotb`
 - [ ] Long description 已经粘进去
-- [ ] 上传 `awakening-rotb-1.0.0.jar`
-- [ ] Version number `1.0.0`
+- [ ] 上传 `awakening-rotb-1.1.0.jar`
+- [ ] Version number `1.1.0`
 - [ ] Minecraft versions: **只勾 `1.21.4`**
 - [ ] Mod loader: **`Fabric`**
 - [ ] Client side: `Required` / Server side: `Required`
@@ -289,23 +289,19 @@ Install on both client and server.
 
 ---
 
-## 七、⚠️ 版本号不一致（发布前值得想一下）
+## 七、✅ 版本号已三方对齐
 
 | 地方 | 值 |
 |---|---|
-| git commit message | `v1.0.1`（两个 commit 都写 v1.0.1） |
-| `gradle.properties` 的 `mod_version` | `1.0.0` |
-| jar 内 `fabric.mod.json` 的 `version` | `1.0.0` |
-| 交付文件名 | `awakening-rotb-1.0.0.jar` |
+| git commit message | `v1.1.0` |
+| `gradle.properties` 的 `mod_version` | `1.1.0` |
+| jar 内 `fabric.mod.json` 的 `version` | `1.1.0` |
+| 交付文件名 | `awakening-rotb-1.1.0.jar` |
 
-**Modrinth 的 Version number 要跟 jar 内部版本号一致**（游戏里 `/awakening status` 显示的就是它），
-所以填 `1.0.0` 是对的、也是当前唯一自洽的选择。
+**Modrinth 的 Version number 填 `1.1.0`** —— 跟 jar 内部、游戏里看到的完全一致。
 
-如果想让 commit 里的 "v1.0.1" 也对上，**先改 `gradle.properties` 的 `mod_version=1.0.1` 再重新 build**，
-然后 Modrinth 填 `1.0.1`。代价是重 build + 重跑 e2e + 重传 jar —— 建议**先按 1.0.0 发布**，
-回头再统一升版号（Modrinth 支持后续再发新 version）。
-
----
+> 2026-11-02 已统一：改 `gradle.properties` + `AwakeningRotb.MOD_VERSION` → 重新 build →
+> 重跑 e2e（25/25 全绿）→ 重新上传 jar。旧版本号 `1.0.0` 的 jar 已从下载目录移除。
 
 _Updated by Steve · 2026-11-02 09:30（新增 /start 门槛、前情提要书、中英双语、banner/截图素材）_
 

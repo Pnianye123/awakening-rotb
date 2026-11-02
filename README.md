@@ -40,7 +40,7 @@ A story-driven Minecraft mod: you play an ancient Builder who slept for millenni
 
 1. 安装 [Fabric Loader](https://fabricmc.net/use/installer/) for 1.21.4
 2. 下载 [Fabric API](https://modrinth.com/mod/fabric-api) 0.110.0+ for 1.21.4，放进 `mods/`
-3. 把 `awakening-rotb-1.0.0.jar` 放进 `mods/`
+3. 把 `awakening-rotb-1.1.0.jar` 放进 `mods/`
 4. 启动游戏
 
 ---
