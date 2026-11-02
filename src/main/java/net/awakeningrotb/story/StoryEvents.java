@@ -144,6 +144,59 @@ public final class StoryEvents {
             }
         });
 
+        // ── 第八纪 · 信标净化 —— 用共鸣方块 + 下界之星净化世界 ──
+        net.fabricmc.fabric.api.event.player.UseBlockCallback.EVENT.register(
+                (net.minecraft.entity.player.PlayerEntity player,
+                 net.minecraft.world.World world,
+                 net.minecraft.util.Hand hand,
+                 net.minecraft.util.hit.BlockHitResult hitResult) -> {
+                    if (!(player instanceof ServerPlayerEntity sp) || !(world instanceof ServerWorld sw)) {
+                        return net.minecraft.util.ActionResult.PASS;
+                    }
+                    StoryProgress progress = StoryState.of(sw).get(sp);
+                    if (!progress.inStory() || progress.era != 7) {
+                        return net.minecraft.util.ActionResult.PASS;
+                    }
+                    // 必须是共鸣方块
+                    var pos = hitResult.getBlockPos();
+                    if (!sw.getBlockState(pos).isOf(net.awakeningrotb.block.ModBlocks.RESONANCE_BLOCK)) {
+                        return net.minecraft.util.ActionResult.PASS;
+                    }
+                    // 必须手持下界之星
+                    ItemStack held = player.getStackInHand(hand);
+                    if (!held.isOf(net.minecraft.item.Items.NETHER_STAR)) {
+                        return net.minecraft.util.ActionResult.PASS;
+                    }
+                    if (progress.hasFlag(StoryManager.FLAG_PURIFIED)) {
+                        return net.minecraft.util.ActionResult.PASS;
+                    }
+
+                    held.decrement(1);
+                    progress.setFlag(StoryManager.FLAG_PURIFIED);
+
+                    // 净化表现 —— 金色光柱 + 全场音效
+                    sw.playSound(null, pos, net.minecraft.sound.SoundEvents.BLOCK_BEACON_ACTIVATE,
+                            net.minecraft.sound.SoundCategory.BLOCKS, 3.0f, 0.6f);
+                    sw.playSound(null, pos, net.minecraft.sound.SoundEvents.BLOCK_BEACON_DEACTIVATE,
+                            net.minecraft.sound.SoundCategory.BLOCKS, 3.0f, 1.6f);
+                    sw.spawnParticles(net.minecraft.particle.ParticleTypes.END_ROD,
+                            pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5,
+                            60, 0.3, 0.0, 1.0, 0.04);
+                    // 净化范围：把附近的凋零之雾清掉
+                    for (net.minecraft.entity.Entity e : sw.getEntitiesByClass(
+                            net.minecraft.entity.mob.MobEntity.class,
+                            sp.getBoundingBox().expand(32),
+                            en -> en instanceof net.minecraft.entity.boss.WitherEntity)) {
+                        e.discard();
+                    }
+
+                    sp.sendMessage(Text.literal("§6信标的光柱冲天而起 —— 金色的、纯净的。")
+                            .formatted(Formatting.GOLD), false);
+                    sp.sendMessage(Text.literal("§a凋零病毒被净化了。蓝色的雾气消散，地表重新长出绿草。")
+                            .formatted(Formatting.GREEN), false);
+                    return net.minecraft.util.ActionResult.SUCCESS;
+                });
+
         // ── 使用末影珍珠碎片 —— 第十四纪「不归路」 ──
         UseItemCallback.EVENT.register((player, world, hand) -> {
             if (!(player instanceof ServerPlayerEntity sp) || !(world instanceof ServerWorld sw)) {

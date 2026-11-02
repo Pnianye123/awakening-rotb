@@ -34,7 +34,6 @@ public class AwakeningCommand {
                         .then(argument("era", IntegerArgumentType.integer(1, Era.COUNT))
                                 .executes(ctx -> skip(ctx, IntegerArgumentType.getInteger(ctx, "era")))))
                 .then(literal("reset")
-                        .requires(src -> src.hasPermissionLevel(2))
                         .executes(ctx -> reset(ctx)))
                 .then(literal("freeplay")
                         .executes(ctx -> freeplay(ctx)))

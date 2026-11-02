@@ -44,3 +44,6 @@ launch/
 
 # Loom test server
 run/
+
+# Node (e2e test deps)
+node_modules/

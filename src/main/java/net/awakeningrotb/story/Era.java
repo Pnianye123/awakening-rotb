@@ -56,8 +56,11 @@ public final class Era {
             case 4 -> StoryBoss.spawnWitherSon(player, false);
             // 第六纪 · 凋零病毒 —— 灾厄村民开始异变
             case 5 -> StoryNpc.spawnWarlock(player, false);
-            // 第七纪 · 坚守者 —— 真正的 Boss 战开始
-            case 6 -> StoryBoss.spawnWitherSon(player, true);
+            // 第七纪 · 坚守者 —— 真正的 Boss 战：坚守者苏醒，锁定凋零之子
+            case 6 -> {
+                net.minecraft.entity.boss.WitherEntity wither = StoryBoss.spawnWitherSon(player, true);
+                StoryBoss.spawnSentinel(player, wither);
+            }
             // 第八纪 · 信标净化 —— 远古古城方向给出提示
             case 7 -> {
             }
