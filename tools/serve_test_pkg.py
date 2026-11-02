@@ -2,7 +2,7 @@
 """《方块之下》测试包临时下载服务（只读、只服务这个目录）。"""
 import http.server, socketserver, os, functools
 
-DIR = "/home/yifan/file-share/public/files/awakening-rotb/v1.0"
+DIR = "/home/yifan/file-share/public/files/awakening-rotb"
 PORT = 8099
 
 class H(http.server.SimpleHTTPRequestHandler):
